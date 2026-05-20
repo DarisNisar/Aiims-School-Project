@@ -805,205 +805,252 @@ export default function AIIMSSchoolPortalPreview() {
   };
 
   const Home = () => {
-    const topResults = results.map((r) => {
-      const student = students.find((s) => s.roll === r.roll);
-      return { ...r, studentName: student?.name || 'Student', className: student?.className || '-', section: student?.section || '-', ...stats(r) };
-    }).sort((a, b) => Number(b.percent) - Number(a.percent)).slice(0, 3);
-    const events = [
-      { title: 'Annual Day', date: 'Coming Soon', detail: 'Cultural programs, awards and student performances.' },
-      { title: 'Sports Day', date: 'Coming Soon', detail: 'Track events, team games and house competitions.' },
-      { title: 'Parent-Teacher Meeting', date: 'Coming Soon', detail: 'Parents can meet teachers and discuss student progress.' },
-    ];
-    const parentInfo = [
-      { title: 'Office Timing', value: '9:00 AM - 3:00 PM' },
-      { title: 'Fee Counter', value: '10:00 AM - 2:00 PM' },
-      { title: 'Required Documents', value: 'Birth Certificate, Aadhaar, Photos, Previous Report Card' },
-      { title: 'Contact Number', value: '+91 98765 43210' },
-    ];
-    const faqs = [
-      { question: 'How can students check their result?', answer: 'Students can click Student Login and enter their 5 digit roll number to view their result.' },
-      { question: 'What should parents do for admission enquiry?', answer: 'Parents can contact the school office during office timing for admission details and required documents.' },
-      { question: 'Where are school notices shown?', answer: 'Latest announcements are shown on the home page and can be updated from the admin dashboard.' },
-      { question: 'What documents are required for admission?', answer: 'Birth certificate, Aadhaar card, passport size photos and previous report card are commonly required.' },
-    ];
-    return <main>
-      <section className="px-8 py-20 text-center"><img src={SCHOOL_LOGO} alt="School Logo" className="w-36 h-36 mx-auto mb-8 rounded-full object-cover shadow-xl border-4 border-white" /><h2 className="text-6xl font-extrabold mb-6">Welcome to <span className="text-blue-700">AIIMS</span></h2><p className="max-w-2xl mx-auto text-lg text-gray-600 mb-10">A modern school management and result portal where students can securely check results, notices, attendance, and more.</p><button onClick={() => setPage('student')} className="bg-blue-600 text-white px-8 py-4 rounded-2xl text-lg shadow-lg">Explore Dashboard</button></section>
-      <section className="px-8 pb-20"><div className={results.length ? 'max-w-7xl mx-auto bg-green-50 border border-green-200 rounded-3xl p-8 shadow-xl text-center' : 'max-w-7xl mx-auto bg-yellow-50 border border-yellow-200 rounded-3xl p-8 shadow-xl text-center'}><h3 className={results.length ? 'text-3xl font-bold text-green-700 mb-3' : 'text-3xl font-bold text-yellow-700 mb-3'}>{results.length ? '🎉 Congratulations! Latest results are now available.' : '📌 Results will be available soon.'}</h3><p className="text-gray-700 text-lg">{results.length ? 'Students can login using their roll number to check percentage, pass/fail status and rank.' : 'Please keep checking latest announcements for result updates.'}</p><button onClick={() => setPage('student')} className={results.length ? 'mt-6 bg-green-600 text-white px-8 py-4 rounded-2xl font-bold' : 'mt-6 bg-yellow-600 text-white px-8 py-4 rounded-2xl font-bold'}>{results.length ? 'Check Result Now' : 'Go to Student Login'}</button></div></section>
-      <section className="px-8 pb-20"><h3 className="text-4xl font-bold text-center mb-12">Portal Features</h3><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">{['Secure Student Login', 'Online Result System', 'Bulk Upload', 'Admin Dashboard'].map((f) => <div key={f} className="bg-white p-8 rounded-3xl shadow-lg"><div className="text-5xl mb-4">📘</div><h4 className="text-xl font-bold mb-3">{f}</h4><p className="text-gray-600">Responsive system designed for students and school administration.</p></div>)}</div></section>
-      <section className="px-8 pb-20"><div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8"><div className="bg-white rounded-3xl shadow-xl p-10"><p className="text-blue-700 font-bold mb-3">About Our School</p><h3 className="text-4xl font-bold mb-6">Building Bright Futures With Smart Learning</h3><p className="text-gray-600 text-lg leading-relaxed mb-6">AIIMS School focuses on discipline, quality education, digital learning, and student growth.</p><div className="grid grid-cols-1 sm:grid-cols-3 gap-4"><div className="bg-blue-50 p-5 rounded-2xl text-center"><h4 className="text-3xl font-bold text-blue-700">{students.length || '3000+'}</h4><p className="text-gray-600 text-sm mt-1">Students</p></div><div className="bg-green-50 p-5 rounded-2xl text-center"><h4 className="text-3xl font-bold text-green-700">12+</h4><p className="text-gray-600 text-sm mt-1">Classes</p></div><div className="bg-purple-50 p-5 rounded-2xl text-center"><h4 className="text-3xl font-bold text-purple-700">{results.length}</h4><p className="text-gray-600 text-sm mt-1">Results</p></div></div></div><div className="bg-blue-700 text-white rounded-3xl shadow-xl p-10"><p className="font-bold opacity-90 mb-3">Admissions Open</p><h3 className="text-4xl font-bold mb-5">Admissions Open for 2026-27</h3><p className="text-blue-100 text-lg leading-relaxed mb-8">Contact the school office for admission details, fee structure, documents required, and class availability.</p><button onClick={() => setPage('student')} className="bg-white text-blue-700 px-6 py-3 rounded-2xl font-bold">Student Portal</button></div></div></section>
-      <section className="px-8 pb-20"><div className="max-w-7xl mx-auto"><h3 className="text-4xl font-bold text-center mb-3 text-blue-700">Top 3 Performers</h3><p className="text-center text-gray-500 mb-12">Only the best 3 students are shown here based on uploaded results.</p><div className="grid grid-cols-1 md:grid-cols-3 gap-8">{topResults.length ? topResults.map((r, index) => <div key={r.roll} className="bg-white rounded-3xl shadow-xl p-8 text-center"><div className="text-5xl mb-4">🏆</div><p className="text-gray-500 font-bold">Rank {index + 1}</p><h4 className="text-2xl font-bold mt-2">{r.studentName}</h4><p className="text-gray-500">Class {r.className} - Section {r.section}</p><div className="mt-5 bg-green-50 text-green-700 rounded-2xl p-4"><p className="text-sm font-semibold">Percentage</p><h5 className="text-3xl font-bold">{r.percent}%</h5></div></div>) : [1, 2, 3].map((x) => <div key={x} className="bg-white rounded-3xl shadow-xl p-8 text-center"><div className="text-5xl mb-4">🏆</div><h4 className="text-2xl font-bold">Topper Name</h4><p className="text-gray-500">Will appear after results are uploaded</p><div className="mt-5 bg-blue-50 text-blue-700 rounded-2xl p-4"><p className="font-semibold">Result Pending</p></div></div>)}</div></div></section>
-      <section className="px-8 pb-20"><div className="max-w-7xl mx-auto"><h3 className="text-4xl font-bold text-center mb-12">Upcoming Events</h3><div className="grid grid-cols-1 md:grid-cols-3 gap-8">{events.map((event) => <div key={event.title} className="bg-white rounded-3xl shadow-xl p-8"><div className="text-5xl mb-4">📅</div><h4 className="text-2xl font-bold text-blue-700 mb-2">{event.title}</h4><p className="font-semibold text-gray-500 mb-4">{event.date}</p><p className="text-gray-600 leading-relaxed">{event.detail}</p></div>)}</div></div></section>
-      <section className="px-8 pb-20"><div className="max-w-7xl mx-auto bg-white rounded-3xl shadow-xl p-10"><h3 className="text-4xl font-bold text-center mb-10 text-blue-700">Parent Information</h3><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">{parentInfo.map((info) => <div key={info.title} className="bg-blue-50 p-6 rounded-2xl"><h4 className="text-lg font-bold text-blue-700 mb-2">{info.title}</h4><p className="text-gray-700">{info.value}</p></div>)}</div></div></section>
-      <section className="px-8 pb-20"><div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-xl p-10"><h3 className="text-4xl font-bold text-center mb-10 text-blue-700">Frequently Asked Questions</h3><div className="space-y-4">{faqs.map((faq) => <div key={faq.question} className="bg-gray-50 p-6 rounded-2xl"><h4 className="text-lg font-bold text-gray-800 mb-2">{faq.question}</h4><p className="text-gray-600">{faq.answer}</p></div>)}</div></div></section>
-      <section className="px-8 pb-20"><div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-xl p-10"><h3 className="text-4xl font-bold mb-8 text-center text-blue-700">Latest Announcements</h3><div className="space-y-4">{notices.map((n, i) => <div key={i} className="bg-blue-50 border-l-4 border-blue-700 p-5 rounded-2xl"><p className="font-medium text-lg">📢 {n}</p></div>)}</div></div></section>
-      <footer className="bg-blue-700 text-white py-10 text-center"><img src={SCHOOL_LOGO} alt="School Logo" className="w-20 h-20 mx-auto mb-4 rounded-full object-cover border-2 border-white" /><h4 className="text-2xl font-bold mb-3">{SCHOOL_NAME}</h4><p className="opacity-90">Built with love! Copyright @2026 Developed by Daris Nisar</p></footer>
-    </main>;
-  };
+  const topResults = results.map((r) => {
+    const student = students.find((s) => s.roll === r.roll);
+    return { ...r, studentName: student?.name || 'Student', className: student?.className || '-', section: student?.section || '-', ...stats(r) };
+  }).sort((a, b) => Number(b.percent) - Number(a.percent)).slice(0, 3);
 
-  const StudentLogin = () => <main className="min-h-screen flex items-center justify-center p-6"><div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md"><h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Student Login</h2><Input value={studentRoll} onChange={(e) => setStudentRoll(cleanRoll(e.target.value))} placeholder="Enter 5 Digit Roll Number" /><button onClick={loginStudent} className="w-full bg-blue-600 text-white p-4 rounded-2xl mt-4 font-bold">Login</button>{studentError && <p className="text-red-600 mt-4 text-center">{studentError}</p>}</div></main>;
+  const events = [
+    { title: 'Annual Day', date: 'Coming Soon', detail: 'Cultural programs, awards and student performances.' },
+    { title: 'Sports Day', date: 'Coming Soon', detail: 'Track events, team games and house competitions.' },
+    { title: 'Parent-Teacher Meeting', date: 'Coming Soon', detail: 'Parents can meet teachers and discuss student progress.' },
+  ];
 
-  const AdminLogin = () => <main className="min-h-screen flex items-center justify-center p-6"><div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md"><h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Admin Login</h2><div className="space-y-4"><Input value={adminEmail} onChange={(e) => setAdminEmail(e.target.value)} placeholder="Admin Email" /><Input type="password" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} placeholder="Admin Password" /></div><button onClick={loginAdmin} className="w-full bg-blue-600 text-white p-4 rounded-2xl mt-4 font-bold">Login</button><p className="text-xs text-gray-400 mt-4 text-center">Admin details are hidden for security.</p></div></main>;
+  const parentInfo = [
+    { title: 'Office Timing', value: '9:00 AM - 3:00 PM' },
+    { title: 'Fee Counter', value: '10:00 AM - 2:00 PM' },
+    { title: 'Required Documents', value: 'Birth Certificate, Aadhaar, Photos, Previous Report Card' },
+    { title: 'Contact Number', value: '+91 98765 43210' },
+  ];
 
-  const StudentDashboard = () => {
-    const r = results.find((x) => x.roll === studentRoll);
-    const st = stats(r);
-    const rank = getRankDetails(studentRoll);
-  
-    return (
-      <main className="px-3 py-4 sm:p-8 max-w-5xl mx-auto">
-        <div className="bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-4 sm:p-8">
-          <h2 className="text-xl sm:text-3xl font-bold text-blue-700 mb-1 sm:mb-2 leading-tight">
-            Welcome, {loggedStudent?.name}
-          </h2>
-  
-          <p className="text-xs sm:text-base text-gray-500 mb-4 sm:mb-6">
-            Roll: {loggedStudent?.roll} | Class {loggedStudent?.className} - Section {loggedStudent?.section}
+  const faqs = [
+    { question: 'How can students check their result?', answer: 'Students can click Student Login and enter their 5 digit roll number to view their result.' },
+    { question: 'What should parents do for admission enquiry?', answer: 'Parents can contact the school office during office timing for admission details and required documents.' },
+    { question: 'Where are school notices shown?', answer: 'Latest announcements are shown on the home page and can be updated from the admin dashboard.' },
+    { question: 'What documents are required for admission?', answer: 'Birth certificate, Aadhaar card, passport size photos and previous report card are commonly required.' },
+  ];
+
+  return (
+    <main>
+      <section className="px-4 sm:px-8 py-10 sm:py-20 text-center">
+        <img
+          src={SCHOOL_LOGO}
+          alt="School Logo"
+          className="w-24 h-24 sm:w-36 sm:h-36 mx-auto mb-5 sm:mb-8 rounded-full object-cover shadow-md sm:shadow-xl border-2 sm:border-4 border-white"
+        />
+
+        <h2 className="text-3xl sm:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight">
+          Welcome to <span className="text-blue-700">AIIMS</span>
+        </h2>
+
+        <p className="max-w-2xl mx-auto text-sm sm:text-lg text-gray-600 mb-6 sm:mb-10 leading-relaxed">
+          A modern school management and result portal where students can securely check results, notices, attendance, and more.
+        </p>
+
+        <button
+          onClick={() => setPage('student')}
+          className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-sm sm:text-lg shadow-md sm:shadow-lg font-bold"
+        >
+          Explore Dashboard
+        </button>
+      </section>
+
+      <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+        <div className={results.length ? 'max-w-7xl mx-auto bg-green-50 border border-green-100 sm:border-green-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md sm:shadow-xl text-center' : 'max-w-7xl mx-auto bg-yellow-50 border border-yellow-100 sm:border-yellow-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md sm:shadow-xl text-center'}>
+          <h3 className={results.length ? 'text-xl sm:text-3xl font-bold text-green-700 mb-2 sm:mb-3 leading-tight' : 'text-xl sm:text-3xl font-bold text-yellow-700 mb-2 sm:mb-3 leading-tight'}>
+            {results.length ? '🎉 Congratulations! Latest results are now available.' : '📌 Results will be available soon.'}
+          </h3>
+
+          <p className="text-gray-700 text-sm sm:text-lg leading-relaxed">
+            {results.length ? 'Students can login using their roll number to check percentage, pass/fail status and rank.' : 'Please keep checking latest announcements for result updates.'}
           </p>
-  
-          <div className="bg-blue-50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 mb-5 sm:mb-8">
-            <h3 className="text-lg sm:text-2xl font-bold text-blue-700 mb-3 sm:mb-5">
-              Student Details
+
+          <button
+            onClick={() => setPage('student')}
+            className={results.length ? 'mt-5 sm:mt-6 bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base' : 'mt-5 sm:mt-6 bg-yellow-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base'}
+          >
+            {results.length ? 'Check Result Now' : 'Go to Student Login'}
+          </button>
+        </div>
+      </section>
+
+      <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+        <h3 className="text-2xl sm:text-4xl font-bold text-center mb-6 sm:mb-12">Portal Features</h3>
+
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8 max-w-7xl mx-auto">
+          {['Secure Student Login', 'Online Result System', 'Bulk Upload', 'Admin Dashboard'].map((f) => (
+            <div key={f} className="bg-white p-4 sm:p-8 rounded-2xl sm:rounded-3xl shadow-md sm:shadow-lg">
+              <div className="text-3xl sm:text-5xl mb-3 sm:mb-4">📘</div>
+              <h4 className="text-sm sm:text-xl font-bold mb-2 sm:mb-3 leading-tight">{f}</h4>
+              <p className="text-gray-600 text-xs sm:text-base leading-relaxed">
+                Responsive system designed for students and school administration.
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-10">
+            <p className="text-blue-700 font-bold mb-2 sm:mb-3 text-sm sm:text-base">About Our School</p>
+
+            <h3 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-6 leading-tight">
+              Building Bright Futures With Smart Learning
             </h3>
-  
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-              <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl">
-                <p className="text-[11px] sm:text-sm font-bold text-gray-500">Student Name</p>
-                <p className="text-sm sm:text-lg font-bold break-words">{loggedStudent?.name || '-'}</p>
+
+            <p className="text-gray-600 text-sm sm:text-lg leading-relaxed mb-5 sm:mb-6">
+              AIIMS School focuses on discipline, quality education, digital learning, and student growth.
+            </p>
+
+            <div className="grid grid-cols-3 gap-3 sm:gap-4">
+              <div className="bg-blue-50 p-3 sm:p-5 rounded-xl sm:rounded-2xl text-center">
+                <h4 className="text-xl sm:text-3xl font-bold text-blue-700">{students.length || '3000+'}</h4>
+                <p className="text-gray-600 text-[11px] sm:text-sm mt-1">Students</p>
               </div>
-  
-              <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl">
-                <p className="text-[11px] sm:text-sm font-bold text-gray-500">Roll Number</p>
-                <p className="text-sm sm:text-lg font-bold break-words">{loggedStudent?.roll || '-'}</p>
+
+              <div className="bg-green-50 p-3 sm:p-5 rounded-xl sm:rounded-2xl text-center">
+                <h4 className="text-xl sm:text-3xl font-bold text-green-700">12+</h4>
+                <p className="text-gray-600 text-[11px] sm:text-sm mt-1">Classes</p>
               </div>
-  
-              <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl">
-                <p className="text-[11px] sm:text-sm font-bold text-gray-500">Class</p>
-                <p className="text-sm sm:text-lg font-bold break-words">{loggedStudent?.className || '-'}</p>
-              </div>
-  
-              <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl">
-                <p className="text-[11px] sm:text-sm font-bold text-gray-500">Section</p>
-                <p className="text-sm sm:text-lg font-bold break-words">{loggedStudent?.section || '-'}</p>
-              </div>
-  
-              <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl">
-                <p className="text-[11px] sm:text-sm font-bold text-gray-500">Father Name</p>
-                <p className="text-sm sm:text-lg font-bold break-words">{loggedStudent?.fatherName || '-'}</p>
-              </div>
-  
-              <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl">
-                <p className="text-[11px] sm:text-sm font-bold text-gray-500">Phone Number</p>
-                <p className="text-sm sm:text-lg font-bold break-words">{loggedStudent?.phone || '-'}</p>
+
+              <div className="bg-purple-50 p-3 sm:p-5 rounded-xl sm:rounded-2xl text-center">
+                <h4 className="text-xl sm:text-3xl font-bold text-purple-700">{results.length}</h4>
+                <p className="text-gray-600 text-[11px] sm:text-sm mt-1">Results</p>
               </div>
             </div>
           </div>
-  
-          {r ? (
-            <>
-              <h3 className="text-lg sm:text-2xl font-bold mb-3 sm:mb-4">
-                {r.exam} Result
-              </h3>
-  
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
-                <div className="bg-blue-50 p-4 sm:p-5 rounded-xl sm:rounded-2xl">
-                  <p className="text-xs sm:text-base text-gray-600">Total Marks</p>
-                  <h3 className="text-xl sm:text-2xl font-bold text-blue-700">{st.total} / 400</h3>
-                </div>
-  
-                <div className="bg-green-50 p-4 sm:p-5 rounded-xl sm:rounded-2xl">
-                  <p className="text-xs sm:text-base text-gray-600">Percentage</p>
-                  <h3 className="text-xl sm:text-2xl font-bold text-green-700">{st.percent}%</h3>
-                </div>
-  
-                <div className={st.pass ? 'bg-green-100 p-4 sm:p-5 rounded-xl sm:rounded-2xl' : 'bg-red-100 p-4 sm:p-5 rounded-xl sm:rounded-2xl'}>
-                  <p className="text-xs sm:text-base text-gray-600">Status</p>
-                  <h3 className={st.pass ? 'text-xl sm:text-2xl font-bold text-green-700' : 'text-xl sm:text-2xl font-bold text-red-700'}>
-                    {st.pass ? 'PASS' : 'FAIL'}
-                  </h3>
-                </div>
-              </div>
-  
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
-                <div className="bg-purple-50 p-4 sm:p-5 rounded-xl sm:rounded-2xl">
-                  <p className="text-xs sm:text-base text-gray-600">School Rank</p>
-                  <h3 className="text-xl sm:text-2xl font-bold text-purple-700">#{rank.schoolRank}</h3>
-                </div>
-  
-                <div className="bg-orange-50 p-4 sm:p-5 rounded-xl sm:rounded-2xl">
-                  <p className="text-xs sm:text-base text-gray-600">Class Rank</p>
-                  <h3 className="text-xl sm:text-2xl font-bold text-orange-700">#{rank.classRank}</h3>
-                </div>
-  
-                <div className="bg-indigo-50 p-4 sm:p-5 rounded-xl sm:rounded-2xl">
-                  <p className="text-xs sm:text-base text-gray-600">Section Rank</p>
-                  <h3 className="text-xl sm:text-2xl font-bold text-indigo-700">#{rank.sectionRank}</h3>
-                </div>
-              </div>
-  
-              <div className="mt-5 sm:mt-8">
-                <h3 className="text-lg sm:text-2xl font-bold text-blue-700 mb-3 sm:mb-5">
-                  Subject Wise Marks
-                </h3>
-  
-                <div className="space-y-3 sm:space-y-4">
-                  {SUBJECTS.map((sub) => {
-                    const mark = Number(r[sub.toLowerCase()]);
-                    const isPass = mark >= PASS_MARK;
-  
-                    return (
-                      <div
-                        key={sub}
-                        className={
-                          isPass
-                            ? 'rounded-2xl sm:rounded-3xl p-4 sm:p-5 bg-gradient-to-r from-blue-50 to-green-50 border sm:border-2 border-blue-100 shadow-sm sm:shadow-lg'
-                            : 'rounded-2xl sm:rounded-3xl p-4 sm:p-5 bg-gradient-to-r from-red-50 to-orange-50 border sm:border-2 border-red-100 shadow-sm sm:shadow-lg'
-                        }
-                      >
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 items-center">
-                          <div className="md:col-span-3">
-                            <p className="text-[11px] sm:text-sm font-bold text-gray-500">Subject</p>
-                            <h4 className="text-lg sm:text-2xl font-extrabold text-gray-800">{sub}</h4>
-                          </div>
-  
-                          <div className="md:col-span-2">
-                            <p className="text-[11px] sm:text-sm font-bold text-gray-500">Marks</p>
-                            <h4 className={isPass ? 'text-2xl sm:text-4xl font-extrabold text-blue-700' : 'text-2xl sm:text-4xl font-extrabold text-red-700'}>
-                              {mark}/100
-                            </h4>
-                          </div>
-  
-                          <div className="md:col-span-5">
-                            <p className="text-[11px] sm:text-sm font-bold text-gray-500 mb-2">Performance</p>
-                            <div className="w-full bg-white rounded-full h-3 sm:h-4 overflow-hidden">
-                              <div
-                                className={isPass ? 'bg-blue-600 h-3 sm:h-4 rounded-full' : 'bg-red-600 h-3 sm:h-4 rounded-full'}
-                                style={{ width: `${Math.min(mark, 100)}%` }}
-                              ></div>
-                            </div>
-                          </div>
-  
-                          <div className="md:col-span-2 md:text-right">
-                            <span className={isPass ? 'inline-block text-xs sm:text-sm font-bold bg-green-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full' : 'inline-block text-xs sm:text-sm font-bold bg-red-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full'}>
-                              {isPass ? 'PASS' : 'FAIL'}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </>
-          ) : (
-            <div className="bg-yellow-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl text-yellow-700 font-semibold text-sm sm:text-base">
-              Result not uploaded yet.
-            </div>
-          )}
-        </div>
-      </main>
-    );
-  };
 
+          <div className="bg-blue-700 text-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-10">
+            <p className="font-bold opacity-90 mb-2 sm:mb-3 text-sm sm:text-base">Admissions Open</p>
+
+            <h3 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-5 leading-tight">
+              Admissions Open for 2026-27
+            </h3>
+
+            <p className="text-blue-100 text-sm sm:text-lg leading-relaxed mb-5 sm:mb-8">
+              Contact the school office for admission details, fee structure, documents required, and class availability.
+            </p>
+
+            <button
+              onClick={() => setPage('student')}
+              className="bg-white text-blue-700 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base"
+            >
+              Student Portal
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+        <div className="max-w-7xl mx-auto">
+          <h3 className="text-2xl sm:text-4xl font-bold text-center mb-2 sm:mb-3 text-blue-700">Top 3 Performers</h3>
+          <p className="text-center text-gray-500 mb-6 sm:mb-12 text-sm sm:text-base">
+            Only the best 3 students are shown here based on uploaded results.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
+            {topResults.length ? topResults.map((r, index) => (
+              <div key={r.roll} className="bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-8 text-center">
+                <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">🏆</div>
+                <p className="text-gray-500 font-bold text-sm sm:text-base">Rank {index + 1}</p>
+                <h4 className="text-xl sm:text-2xl font-bold mt-2">{r.studentName}</h4>
+                <p className="text-gray-500 text-sm sm:text-base">Class {r.className} - Section {r.section}</p>
+                <div className="mt-4 sm:mt-5 bg-green-50 text-green-700 rounded-xl sm:rounded-2xl p-3 sm:p-4">
+                  <p className="text-xs sm:text-sm font-semibold">Percentage</p>
+                  <h5 className="text-2xl sm:text-3xl font-bold">{r.percent}%</h5>
+                </div>
+              </div>
+            )) : [1, 2, 3].map((x) => (
+              <div key={x} className="bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-8 text-center">
+                <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">🏆</div>
+                <h4 className="text-xl sm:text-2xl font-bold">Topper Name</h4>
+                <p className="text-gray-500 text-sm sm:text-base">Will appear after results are uploaded</p>
+                <div className="mt-4 sm:mt-5 bg-blue-50 text-blue-700 rounded-xl sm:rounded-2xl p-3 sm:p-4">
+                  <p className="font-semibold text-sm sm:text-base">Result Pending</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+        <div className="max-w-7xl mx-auto">
+          <h3 className="text-2xl sm:text-4xl font-bold text-center mb-6 sm:mb-12">Upcoming Events</h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
+            {events.map((event) => (
+              <div key={event.title} className="bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-8">
+                <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">📅</div>
+                <h4 className="text-xl sm:text-2xl font-bold text-blue-700 mb-2">{event.title}</h4>
+                <p className="font-semibold text-gray-500 mb-3 sm:mb-4 text-sm sm:text-base">{event.date}</p>
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{event.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+        <div className="max-w-7xl mx-auto bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-10">
+          <h3 className="text-2xl sm:text-4xl font-bold text-center mb-6 sm:mb-10 text-blue-700">Parent Information</h3>
+
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+            {parentInfo.map((info) => (
+              <div key={info.title} className="bg-blue-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl">
+                <h4 className="text-sm sm:text-lg font-bold text-blue-700 mb-1 sm:mb-2 leading-tight">{info.title}</h4>
+                <p className="text-gray-700 text-xs sm:text-base leading-relaxed">{info.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+        <div className="max-w-6xl mx-auto bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-10">
+          <h3 className="text-2xl sm:text-4xl font-bold text-center mb-6 sm:mb-10 text-blue-700">Frequently Asked Questions</h3>
+
+          <div className="space-y-3 sm:space-y-4">
+            {faqs.map((faq) => (
+              <div key={faq.question} className="bg-gray-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl">
+                <h4 className="text-sm sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2 leading-tight">{faq.question}</h4>
+                <p className="text-gray-600 text-xs sm:text-base leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+        <div className="max-w-6xl mx-auto bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-10">
+          <h3 className="text-2xl sm:text-4xl font-bold mb-6 sm:mb-8 text-center text-blue-700">Latest Announcements</h3>
+
+          <div className="space-y-3 sm:space-y-4">
+            {notices.map((n, i) => (
+              <div key={i} className="bg-blue-50 border-l-2 sm:border-l-4 border-blue-700 p-4 sm:p-5 rounded-xl sm:rounded-2xl">
+                <p className="font-medium text-sm sm:text-lg leading-relaxed">📢 {n}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer className="bg-blue-700 text-white py-8 sm:py-10 text-center px-4">
+        <img
+          src={SCHOOL_LOGO}
+          alt="School Logo"
+          className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full object-cover border-2 border-white"
+        />
+
+        <h4 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">{SCHOOL_NAME}</h4>
+        <p className="opacity-90 text-xs sm:text-base leading-relaxed">
+          Built with love! Copyright @2026 Developed by Daris Nisar
+        </p>
+      </footer>
+    </main>
+  );
+};
   const StudentForm = () => <div className="bg-blue-50 rounded-3xl p-5 mb-6"><h3 className="font-bold text-blue-700 mb-4">Add / Edit Student Details</h3><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"><label><span className="text-sm font-bold text-gray-600 mb-2 block">Student Name</span><Input value={studentData.name} onChange={(e) => setStudentData({ ...studentData, name: e.target.value })} placeholder="Enter student name" /></label><label><span className="text-sm font-bold text-gray-600 mb-2 block">Roll Number</span><Input value={studentData.roll} onChange={(e) => setStudentData({ ...studentData, roll: cleanRoll(e.target.value) })} placeholder="Enter 5 digit roll number" /></label><label><span className="text-sm font-bold text-gray-600 mb-2 block">Class</span><Input value={studentData.className} onChange={(e) => setStudentData({ ...studentData, className: e.target.value })} placeholder="Enter class" /></label><label><span className="text-sm font-bold text-gray-600 mb-2 block">Section</span><Input value={studentData.section} onChange={(e) => setStudentData({ ...studentData, section: e.target.value })} placeholder="Enter section" /></label><label><span className="text-sm font-bold text-gray-600 mb-2 block">Father Name</span><Input value={studentData.fatherName} onChange={(e) => setStudentData({ ...studentData, fatherName: e.target.value })} placeholder="Enter father name" /></label><label><span className="text-sm font-bold text-gray-600 mb-2 block">Phone Number</span><Input value={studentData.phone} onChange={(e) => setStudentData({ ...studentData, phone: cleanPhone(e.target.value) })} placeholder="Enter phone number" /></label></div></div>;
 
   const AdminDashboard = () => <main className="p-4 sm:p-6 max-w-7xl mx-auto"><div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6"><div className="flex flex-wrap justify-between items-center gap-3 mb-6"><div className="flex flex-wrap gap-3">{['dashboard', 'students', 'results', 'notices'].map((tab) => <button key={tab} onClick={() => setAdminTab(tab)} className={adminTab === tab ? 'bg-blue-600 text-white px-4 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-bold capitalize text-sm sm:text-base' : 'bg-gray-100 px-4 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-bold capitalize text-sm sm:text-base'}>{tab}</button>)}</div><button onClick={logoutAdmin} className="bg-red-600 text-white px-4 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base">Logout</button></div>{message && <div className="bg-green-50 text-green-700 p-4 rounded-2xl mb-6 font-semibold">{message}</div>}
