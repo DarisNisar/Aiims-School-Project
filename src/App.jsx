@@ -1,7 +1,7 @@
 import React from 'react';
 import { createClient } from '@supabase/supabase-js';
 
-function AIIMSSchoolPortalPreview() {
+export default function AIIMSSchoolPortalPreview() {
   const SCHOOL_NAME = 'AIIMS School Portal';
   const SCHOOL_TAGLINE = 'Smart Student Management System';
   const SCHOOL_LOGO = 'https://scontent.fblr21-2.fna.fbcdn.net/v/t39.30808-6/481794218_1170107788457435_8543515203972674516_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=jBZWdszteWEQ7kNvwFcGSMI&_nc_oc=AdrmLTYyk1XS-tVGXWWqLxlDAQpmHTFtIWXzLiioeNaU-JmNJADCQ7TqeFbsCyxsLBo&_nc_zt=23&_nc_ht=scontent.fblr21-2.fna&_nc_gid=zxsPltKDiwMUtS1OZQD0BQ&_nc_ss=7b289&oh=00_Af4dzYoey9iNJQ_1gD0BKkrBRcQVwA9guqhF8A5fwvdx4Q&oe=6A12B2C5';
@@ -68,6 +68,8 @@ function AIIMSSchoolPortalPreview() {
   const [editingStudentRoll, setEditingStudentRoll] = React.useState(null);
   const [editingResultRoll, setEditingResultRoll] = React.useState(null);
   const [message, setMessage] = React.useState('');
+  const [syncStatus, setSyncStatus] = React.useState('Checking online database...');
+  const [onlineLoading, setOnlineLoading] = React.useState(true);
 
   React.useEffect(() => localStorage.setItem('aiims_students', JSON.stringify(students)), [students]);
   React.useEffect(() => localStorage.setItem('aiims_results', JSON.stringify(results)), [results]);
@@ -103,7 +105,8 @@ function AIIMSSchoolPortalPreview() {
     loadOnlineData();
 
     return () => {};
-  }, []);
+  },
+);
 
   const saveStudentOnline = async (student) => {
     const cleanStudent = normalizeStudent(student);
@@ -190,6 +193,9 @@ function AIIMSSchoolPortalPreview() {
       show('Local data synced online.');
     }
   };
+
+  void saveNoticesOnline;
+  void syncLocalDataOnline;
 
   const cleanRoll = (v) => String(v || '').replace(/[^0-9]/g, '').slice(0, 5);
   const cleanPhone = (v) => String(v || '').replace(/[^0-9]/g, '').slice(0, 10);
@@ -814,49 +820,6 @@ function AIIMSSchoolPortalPreview() {
       {page === 'studentDashboard' && StudentDashboard()}
       {page === 'adminDashboard' && (adminLoggedIn ? AdminDashboard() : AdminLogin())}
     </div>
-  );
-}
-
-class PortalErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { error: null };
-  }
-
-  static getDerivedStateFromError(error) {
-    return { error };
-  }
-
-  componentDidCatch(error, info) {
-    console.error('Portal crashed:', error, info);
-  }
-
-  render() {
-    if (this.state.error) {
-      return (
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-          <div className="bg-white max-w-xl w-full rounded-3xl shadow-xl p-6 text-center">
-            <h1 className="text-2xl font-bold text-red-600 mb-3">Website error</h1>
-            <p className="text-gray-700 mb-4">
-              The portal could not load because of a code or database connection error.
-            </p>
-            <pre className="text-left bg-gray-100 rounded-xl p-4 text-xs overflow-auto">
-              {String(this.state.error?.message || this.state.error)}
-            </pre>
-          </div>
-        </div>
-      );
-    }
-
-    return this.props.children;
-  }
-}
-
-export default function App() {
-  return (
-    <PortalErrorBoundary>
-      <AIIMSSchoolPortalPreview />
-    </PortalErrorBoundary>
   );
 }
 
