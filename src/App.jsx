@@ -16,6 +16,24 @@ export default function AIIMSSchoolPortalPreview() {
   const SUPABASE_KEY = "sb_publishable_CqJFBUDKjwry4WH0G0DsqQ_CztYPs5j";
   const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
+  const normalizeStudent = (s) => ({
+    roll: String(s?.roll || '').trim(),
+    name: s?.name || '',
+    className: s?.className || s?.classname || s?.class_name || '',
+    section: s?.section || '',
+    fatherName: s?.fatherName || s?.fathername || s?.father_name || '',
+    phone: s?.phone || ''
+  });
+
+  const normalizeResult = (r) => ({
+    roll: String(r?.roll || '').trim(),
+    exam: r?.exam || '',
+    maths: r?.maths || '',
+    science: r?.science || '',
+    english: r?.english || '',
+    computer: r?.computer || ''
+  });
+
   const load = (key, fallback) => {
     try {
       const saved = localStorage.getItem(key);
@@ -58,6 +76,7 @@ export default function AIIMSSchoolPortalPreview() {
 
   React.useEffect(() => {
     const loadOnlineData = async () => {
+      setOnlineLoading(true);
       try {
         const { data: onlineStudents, error: studentsError } = await supabase.from('students').select('*');
         const { data: onlineResults, error: resultsError } = await supabase.from('results').select('*');
@@ -69,13 +88,15 @@ export default function AIIMSSchoolPortalPreview() {
           return;
         }
 
-        setStudents(onlineStudents || []);
-        setResults(onlineResults || []);
+        setStudents((onlineStudents || []).map(normalizeStudent));
+        setResults((onlineResults || []).map(normalizeResult));
         if (onlineNotices && onlineNotices.length) setNotices(onlineNotices.map((n) => n.text).filter(Boolean));
         setSyncStatus('Online database connected.');
       } catch (err) {
         console.error('Supabase connection error:', err);
         setSyncStatus('Online database not connected.');
+      } finally {
+        setOnlineLoading(false);
       }
     };
 
@@ -104,8 +125,9 @@ export default function AIIMSSchoolPortalPreview() {
   }, []);
 
   const saveStudentOnline = async (student) => {
-    if (!student?.roll) return false;
-    const { error } = await supabase.from('students').upsert(student, { onConflict: 'roll' });
+    const cleanStudent = normalizeStudent(student);
+    if (!cleanStudent.roll) return false;
+    const { error } = await supabase.from('students').upsert(cleanStudent, { onConflict: 'roll' });
     if (error) {
       console.error('Student save failed:', error);
       setSyncStatus('Student save failed: ' + error.message);
@@ -117,8 +139,9 @@ export default function AIIMSSchoolPortalPreview() {
   };
 
   const saveResultOnline = async (result) => {
-    if (!result?.roll) return false;
-    const { error } = await supabase.from('results').upsert(result, { onConflict: 'roll' });
+    const cleanResult = normalizeResult(result);
+    if (!cleanResult.roll) return false;
+    const { error } = await supabase.from('results').upsert(cleanResult, { onConflict: 'roll' });
     if (error) {
       console.error('Result save failed:', error);
       setSyncStatus('Result save failed: ' + error.message);
@@ -131,7 +154,7 @@ export default function AIIMSSchoolPortalPreview() {
 
   const deleteStudentOnline = async (roll) => {
     if (!roll) return false;
-    const { error } = await supabase.from('students').delete().eq('roll', roll);
+    const { error } = await supabase.from('students').delete().eq('roll', String(roll));
     if (error) {
       console.error('Student delete failed:', error);
       setSyncStatus('Student delete failed: ' + error.message);
@@ -142,7 +165,7 @@ export default function AIIMSSchoolPortalPreview() {
 
   const deleteResultOnline = async (roll) => {
     if (!roll) return false;
-    const { error } = await supabase.from('results').delete().eq('roll', roll);
+    const { error } = await supabase.from('results').delete().eq('roll', String(roll));
     if (error) {
       console.error('Result delete failed:', error);
       setSyncStatus('Result delete failed: ' + error.message);
@@ -354,36 +377,47 @@ export default function AIIMSSchoolPortalPreview() {
       return;
     }
 
-    let student = students.find((s) => String(s.roll) === roll);
+    setStudentError('Checking online database...');
 
-    // If data has not loaded yet on this device, check Supabase directly.
-    if (!student) {
-      const { data, error } = await supabase
-        .from('students')
-        .select('*')
-        .eq('roll', roll)
-        .maybeSingle();
+    let student = students.find((s) => String(s.roll).trim() === roll);
 
-      if (!error && data) {
-        student = data;
-        setStudents((prev) => prev.some((s) => String(s.roll) === roll) ? prev : [...prev, data]);
-      }
-    }
+    const { data: onlineStudent, error: studentLookupError } = await supabase
+      .from('students')
+      .select('*')
+      .eq('roll', roll)
+      .maybeSingle();
 
-    if (!student) {
-      setStudentError('Student not found. Please check your roll number.');
+    if (studentLookupError) {
+      console.error('Student lookup failed:', studentLookupError);
+      setStudentError('Online database error: ' + studentLookupError.message);
       return;
     }
 
-    // Also refresh result for this roll from Supabase so another device can see it immediately.
-    const { data: onlineResult } = await supabase
+    if (onlineStudent) {
+      student = normalizeStudent(onlineStudent);
+      setStudents((prev) => prev.some((s) => String(s.roll).trim() === roll) ? prev.map((s) => String(s.roll).trim() === roll ? student : s) : [...prev, student]);
+    }
+
+    if (!student) {
+      setStudentError('Student not found online. Please add/sync this roll number from Admin first.');
+      return;
+    }
+
+    const { data: onlineResult, error: resultLookupError } = await supabase
       .from('results')
       .select('*')
       .eq('roll', roll)
       .maybeSingle();
 
+    if (resultLookupError) {
+      console.error('Result lookup failed:', resultLookupError);
+      setStudentError('Result lookup error: ' + resultLookupError.message);
+      return;
+    }
+
     if (onlineResult) {
-      setResults((prev) => [...prev.filter((r) => String(r.roll) !== roll), onlineResult]);
+      const cleanResult = normalizeResult(onlineResult);
+      setResults((prev) => [...prev.filter((r) => String(r.roll).trim() !== roll), cleanResult]);
     }
 
     setLoggedStudent(student);
@@ -580,7 +614,7 @@ export default function AIIMSSchoolPortalPreview() {
     );
   };
 
-  const StudentLogin = () => <main className="min-h-screen flex items-center justify-center p-6"><div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md"><h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Student Login</h2><Input inputMode="numeric" autoComplete="off" value={studentRoll} onChange={(e) => setStudentRoll(cleanRoll(e.target.value))} placeholder="Enter 5 Digit Roll Number" /><button onClick={loginStudent} className="w-full bg-blue-600 text-white p-4 rounded-2xl mt-4 font-bold">Login</button>{studentError && <p className="text-red-600 mt-4 text-center">{studentError}</p>}</div></main>;
+  const StudentLogin = () => <main className="min-h-screen flex items-center justify-center p-6"><div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md"><h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Student Login</h2><p className="text-xs text-gray-500 text-center mb-4">{syncStatus}</p><Input inputMode="numeric" autoComplete="off" value={studentRoll} onChange={(e) => setStudentRoll(cleanRoll(e.target.value))} placeholder="Enter 5 Digit Roll Number" /><button disabled={onlineLoading} onClick={loginStudent} className={onlineLoading ? "w-full bg-gray-400 text-white p-4 rounded-2xl mt-4 font-bold cursor-not-allowed" : "w-full bg-blue-600 text-white p-4 rounded-2xl mt-4 font-bold"}>{onlineLoading ? 'Loading...' : 'Login'}</button>{studentError && <p className="text-red-600 mt-4 text-center">{studentError}</p>}</div></main>;
 
   const AdminLogin = () => <main className="min-h-screen flex items-center justify-center p-6"><div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md"><h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Admin Login</h2><div className="space-y-4"><Input type="email" autoComplete="username" value={adminEmail} onChange={(e) => setAdminEmail(e.target.value)} placeholder="Admin Email" /><Input type="password" autoComplete="current-password" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} placeholder="Admin Password" /></div><button onClick={loginAdmin} className="w-full bg-blue-600 text-white p-4 rounded-2xl mt-4 font-bold">Login</button><p className="text-xs text-gray-400 mt-4 text-center">Admin details are hidden for security.</p></div></main>;
 
