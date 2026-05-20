@@ -1468,9 +1468,9 @@ export default function AIIMSSchoolPortalPreview() {
     );
   };
 
-  const StudentLogin = () => <main className="min-h-screen flex items-center justify-center p-6"><div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md"><h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Student Login</h2><Input value={studentRoll} onChange={(e) => setStudentRoll(cleanRoll(e.target.value))} placeholder="Enter 5 Digit Roll Number" /><button onClick={loginStudent} className="w-full bg-blue-600 text-white p-4 rounded-2xl mt-4 font-bold">Login</button>{studentError && <p className="text-red-600 mt-4 text-center">{studentError}</p>}</div></main>;
+  const StudentLogin = () => <main className="min-h-screen flex items-center justify-center p-6"><div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md"><h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Student Login</h2><Input inputMode="numeric" autoComplete="off" value={studentRoll} onChange={(e) => setStudentRoll(cleanRoll(e.target.value))} placeholder="Enter 5 Digit Roll Number" /><button onClick={loginStudent} className="w-full bg-blue-600 text-white p-4 rounded-2xl mt-4 font-bold">Login</button>{studentError && <p className="text-red-600 mt-4 text-center">{studentError}</p>}</div></main>;
 
-  const AdminLogin = () => <main className="min-h-screen flex items-center justify-center p-6"><div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md"><h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Admin Login</h2><div className="space-y-4"><Input value={adminEmail} onChange={(e) => setAdminEmail(e.target.value)} placeholder="Admin Email" /><Input type="password" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} placeholder="Admin Password" /></div><button onClick={loginAdmin} className="w-full bg-blue-600 text-white p-4 rounded-2xl mt-4 font-bold">Login</button><p className="text-xs text-gray-400 mt-4 text-center">Admin details are hidden for security.</p></div></main>;
+  const AdminLogin = () => <main className="min-h-screen flex items-center justify-center p-6"><div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md"><h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Admin Login</h2><div className="space-y-4"><Input type="email" autoComplete="username" value={adminEmail} onChange={(e) => setAdminEmail(e.target.value)} placeholder="Admin Email" /><Input type="password" autoComplete="current-password" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} placeholder="Admin Password" /></div><button onClick={loginAdmin} className="w-full bg-blue-600 text-white p-4 rounded-2xl mt-4 font-bold">Login</button><p className="text-xs text-gray-400 mt-4 text-center">Admin details are hidden for security.</p></div></main>;
 
   const StudentDashboard = () => {
     const r = results.find((x) => x.roll === studentRoll);
@@ -1681,13 +1681,11 @@ export default function AIIMSSchoolPortalPreview() {
         </div>
       </header>
 
-      {page === 'home' && <Home />}
-      {page === 'student' && <StudentLogin />}
-      {page === 'admin' && (adminLoggedIn ? <AdminDashboard /> : <AdminLogin />)}
-      {page === 'studentDashboard' && <StudentDashboard />}
-      {page === 'adminDashboard' && (adminLoggedIn ? <AdminDashboard /> : <AdminLogin />)}
+      {page === 'home' && Home()}
+      {page === 'student' && StudentLogin()}
+      {page === 'admin' && (adminLoggedIn ? AdminDashboard() : AdminLogin())}
+      {page === 'studentDashboard' && StudentDashboard()}
+      {page === 'adminDashboard' && (adminLoggedIn ? AdminDashboard() : AdminLogin())}
     </div>
   );
 }
-
-
