@@ -58,13 +58,25 @@ export default function AIIMSSchoolPortalPreview() {
 
   React.useEffect(() => {
     const loadOnlineData = async () => {
-      const { data: onlineStudents } = await supabase.from('students').select('*');
-      const { data: onlineResults } = await supabase.from('results').select('*');
-      const { data: onlineNotices } = await supabase.from('notices').select('*').order('order_index', { ascending: true });
+      try {
+        const { data: onlineStudents, error: studentsError } = await supabase.from('students').select('*');
+        const { data: onlineResults, error: resultsError } = await supabase.from('results').select('*');
+        const { data: onlineNotices, error: noticesError } = await supabase.from('notices').select('*').order('order_index', { ascending: true });
 
-      if (onlineStudents) setStudents(onlineStudents);
-      if (onlineResults) setResults(onlineResults);
-      if (onlineNotices && onlineNotices.length) setNotices(onlineNotices.map((n) => n.text).filter(Boolean));
+        if (studentsError || resultsError || noticesError) {
+          console.error('Supabase load error:', studentsError || resultsError || noticesError);
+          setSyncStatus('Online database error. Check Supabase tables/policies.');
+          return;
+        }
+
+        setStudents(onlineStudents || []);
+        setResults(onlineResults || []);
+        if (onlineNotices && onlineNotices.length) setNotices(onlineNotices.map((n) => n.text).filter(Boolean));
+        setSyncStatus('Online database connected.');
+      } catch (err) {
+        console.error('Supabase connection error:', err);
+        setSyncStatus('Online database not connected.');
+      }
     };
 
     loadOnlineData();
@@ -92,36 +104,87 @@ export default function AIIMSSchoolPortalPreview() {
   }, []);
 
   const saveStudentOnline = async (student) => {
-    if (!student?.roll) return;
-    await supabase.from('students').upsert(student, { onConflict: 'roll' });
+    if (!student?.roll) return false;
+    const { error } = await supabase.from('students').upsert(student, { onConflict: 'roll' });
+    if (error) {
+      console.error('Student save failed:', error);
+      setSyncStatus('Student save failed: ' + error.message);
+      alert('Student was saved only on this device. Supabase error: ' + error.message);
+      return false;
+    }
+    setSyncStatus('Student saved online.');
+    return true;
   };
 
   const saveResultOnline = async (result) => {
-    if (!result?.roll) return;
-    await supabase.from('results').upsert(result, { onConflict: 'roll' });
+    if (!result?.roll) return false;
+    const { error } = await supabase.from('results').upsert(result, { onConflict: 'roll' });
+    if (error) {
+      console.error('Result save failed:', error);
+      setSyncStatus('Result save failed: ' + error.message);
+      alert('Result was saved only on this device. Supabase error: ' + error.message);
+      return false;
+    }
+    setSyncStatus('Result saved online.');
+    return true;
   };
 
   const deleteStudentOnline = async (roll) => {
-    if (!roll) return;
-    await supabase.from('students').delete().eq('roll', roll);
+    if (!roll) return false;
+    const { error } = await supabase.from('students').delete().eq('roll', roll);
+    if (error) {
+      console.error('Student delete failed:', error);
+      setSyncStatus('Student delete failed: ' + error.message);
+      return false;
+    }
+    return true;
   };
 
   const deleteResultOnline = async (roll) => {
-    if (!roll) return;
-    await supabase.from('results').delete().eq('roll', roll);
+    if (!roll) return false;
+    const { error } = await supabase.from('results').delete().eq('roll', roll);
+    if (error) {
+      console.error('Result delete failed:', error);
+      setSyncStatus('Result delete failed: ' + error.message);
+      return false;
+    }
+    return true;
   };
 
   const saveNoticesOnline = async (list) => {
-    await supabase.from('notices').delete().neq('id', 0);
+    const { error: deleteError } = await supabase.from('notices').delete().neq('id', 0);
+    if (deleteError) {
+      console.error('Notice delete failed:', deleteError);
+      setSyncStatus('Notice save failed: ' + deleteError.message);
+      return false;
+    }
+
     const rows = (list || []).map((text, index) => ({ text, order_index: index }));
-    if (rows.length) await supabase.from('notices').insert(rows);
+    if (!rows.length) return true;
+
+    const { error } = await supabase.from('notices').insert(rows);
+    if (error) {
+      console.error('Notice save failed:', error);
+      setSyncStatus('Notice save failed: ' + error.message);
+      return false;
+    }
+
+    setSyncStatus('Notices saved online.');
+    return true;
   };
 
   const syncLocalDataOnline = async () => {
-    await Promise.all(students.map(saveStudentOnline));
-    await Promise.all(results.map(saveResultOnline));
+    const studentResults = await Promise.all(students.map(saveStudentOnline));
+    const resultResults = await Promise.all(results.map(saveResultOnline));
     await saveNoticesOnline(notices);
-    show('Local data synced online.');
+
+    const failed = studentResults.filter((x) => x === false).length + resultResults.filter((x) => x === false).length;
+    if (failed) {
+      show(`${failed} items failed to sync. Check the online database message.`);
+    } else {
+      setSyncStatus('All local data synced online.');
+      show('Local data synced online.');
+    }
   };
 
   const cleanRoll = (v) => String(v || '').replace(/[^0-9]/g, '').slice(0, 5);
