@@ -488,7 +488,7 @@ export default function AIIMSSchoolPortalPreview() {
                   </p>
                 </div>
 
-                // <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+                {/* /* {/* // <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
                 //   <div className="lg:col-span-5">
                 //     <div className="relative min-h-[310px] sm:min-h-[420px] rounded-[1.75rem] sm:rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-white to-blue-50 text-slate-900 shadow-2xl p-6 sm:p-8">
                 //       <div className="absolute -right-16 -top-16 w-52 h-52 rounded-full bg-blue-200"></div>
@@ -533,7 +533,7 @@ export default function AIIMSSchoolPortalPreview() {
                 //           </div>
                 //         </div>
                 //       ))}
-                //     </div>
+                //     </div> */} */ */}
 
                     <div className="lg:hidden flex items-center justify-center gap-2 mt-1 text-blue-200 text-xs font-semibold">
                       <span className="w-8 h-1 rounded-full bg-blue-300"></span>
