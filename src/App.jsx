@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { createClient } from '@supabase/supabase-js';
 
@@ -108,7 +107,7 @@ export default function AIIMSSchoolPortalPreview() {
     loadOnlineData();
 
     return () => {};
-  },
+  }, 
 );
 
   const saveStudentOnline = async (student) => {
@@ -466,7 +465,7 @@ export default function AIIMSSchoolPortalPreview() {
     return (
       <main>
         <section className="px-4 sm:px-8 py-10 sm:py-20 text-center">
-          <img src={SCHOOL_LOGO} alt="School Logo" className="w-24 h-24 sm:w-36 sm:h-36 mx-auto mb-5 sm:mb-8 rounded-full object-cover shadow-md sm:shadow-xl border-2 sm:border-4 border-white" />
+          <img src={SCHOOL_LOGO} alt="School Logo" className="w-24 h-24 sm:w-36 sm:h-36 mx-auto mb-5 sm:mb-8 rounded-full object-cover shadow-md sm:shadow-xl sm:border-4 sm:border-white" />
           <h2 className="text-3xl sm:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight">Welcome to <span className="text-blue-700">AIIMS</span></h2>
           <p className="max-w-2xl mx-auto text-sm sm:text-lg text-gray-600 mb-6 sm:mb-10 leading-relaxed">A modern school management and result portal where students can securely check results, notices, attendance, and more.</p>
           <button onClick={() => setPage('student')} className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-sm sm:text-lg shadow-md sm:shadow-lg font-bold">Explore Dashboard</button>
@@ -522,7 +521,7 @@ export default function AIIMSSchoolPortalPreview() {
                         { title: 'Achievements', detail: 'Celebrating effort, progress and student success with pride.', icon: '🏆', tone: 'from-amber-400 to-orange-500' },
                       ].map((card) => (
                         <div key={card.title} className="min-w-[78%] sm:min-w-[300px] lg:min-w-0 snap-center group">
-                          <div className="relative h-full min-h-[190px] sm:min-h-[220px] overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/15 bg-white/10 backdrop-blur-xl p-5 sm:p-6 shadow-xl transition duration-300 hover:-translate-y-1 hover:bg-white/15">
+                          <div className="relative h-full min-h-[190px] sm:min-h-[220px] overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border-0 sm:border sm:border-white/15 bg-white/10 backdrop-blur-xl p-4 sm:p-6 shadow-xl transition duration-300 hover:-translate-y-1 hover:bg-white/15">
                             <div className={`absolute -right-10 -top-10 w-32 h-32 rounded-full bg-gradient-to-br ${card.tone} opacity-70 blur-sm`}></div>
                             <div className="relative z-10">
                               <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.tone} flex items-center justify-center text-3xl shadow-lg mb-5`}>
@@ -546,11 +545,11 @@ export default function AIIMSSchoolPortalPreview() {
               </div>
             </div>
 
-            <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-white shadow-2xl border border-blue-50 p-5 sm:p-10">
+            <div className="relative overflow-hidden rounded-[1.5rem] sm:rounded-[3rem] bg-white shadow-lg sm:shadow-2xl border-0 sm:border sm:border-blue-50 p-4 sm:p-10">
               <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-100 rounded-full blur-3xl"></div>
               <div className="absolute -bottom-24 -right-20 w-72 h-72 bg-purple-100 rounded-full blur-3xl"></div>
 
-              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-center">
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-10 items-center">
                 <div className="lg:col-span-4">
                   <p className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 rounded-full px-4 py-2 text-xs sm:text-sm font-bold mb-4">
                     📸 Photo Gallery
@@ -567,7 +566,7 @@ export default function AIIMSSchoolPortalPreview() {
                 </div>
 
                 <div className="lg:col-span-8">
-                  <div className="relative h-[360px] sm:h-[470px] max-w-xl mx-auto"
+                  <div className="relative h-[300px] sm:h-[470px] max-w-xl mx-auto"
                     onTouchStart={(e) => {
                       e.currentTarget.dataset.startX = String(e.touches[0].clientX);
                     }}
@@ -601,7 +600,7 @@ export default function AIIMSSchoolPortalPreview() {
                             zIndex: 20 - offset,
                           }}
                         >
-                          <div className={`h-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl bg-gradient-to-br ${photo.bg} text-white border-4 border-white`}>
+                          <div className={`h-full rounded-[1.5rem] sm:rounded-[2.5rem] overflow-hidden shadow-lg sm:shadow-2xl bg-gradient-to-br ${photo.bg} text-white border-0 sm:border-4 sm:border-white`}>
                             <div className="relative h-full">
                               {photo.image ? (
                                 <img src={photo.image} alt="AIIMS Campus" className="absolute inset-0 w-full h-full object-cover" />
@@ -610,7 +609,7 @@ export default function AIIMSSchoolPortalPreview() {
                               )}
                               <div className="absolute inset-0 bg-black/10"></div>
                               <div className="absolute top-5 left-5 z-10">
-                                <span className="bg-white/20 backdrop-blur border border-white/20 rounded-full px-4 py-2 text-xs sm:text-sm font-bold">AIIMS Campus</span>
+                                <span className="bg-white/20 backdrop-blur border-0 sm:border sm:border-white/20 rounded-full px-4 py-2 text-xs sm:text-sm font-bold">AIIMS Campus</span>
                               </div>
                             </div>
                           </div>
@@ -1027,6 +1026,7 @@ export default function AIIMSSchoolPortalPreview() {
 
 
 
+
 // import React from 'react';
 // import { createClient } from '@supabase/supabase-js';
 
@@ -1073,6 +1073,7 @@ export default function AIIMSSchoolPortalPreview() {
 //   };
 
 //   const [page, setPage] = React.useState('home');
+//   const [photoIndex, setPhotoIndex] = React.useState(0);
 //   const [adminTab, setAdminTab] = React.useState('dashboard');
 //   const [adminLoggedIn, setAdminLoggedIn] = React.useState(() => load('aiims_admin_logged_in', false));
 //   const [students, setStudents] = React.useState(() => load('aiims_students', []));
@@ -1499,6 +1500,164 @@ export default function AIIMSSchoolPortalPreview() {
 //           <button onClick={() => setPage('student')} className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-sm sm:text-lg shadow-md sm:shadow-lg font-bold">Explore Dashboard</button>
 //         </section>
 
+//         <section className="px-4 sm:px-8 pb-10 sm:pb-16">
+//           <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
+//             <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-[#07111f] text-white shadow-2xl">
+//               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.45),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.35),transparent_35%)]"></div>
+//               <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)', backgroundSize: '34px 34px' }}></div>
+
+//               <div className="relative z-10 p-5 sm:p-10">
+//                 <div className="max-w-3xl mb-7 sm:mb-10">
+//                   <p className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-2 text-xs sm:text-sm font-bold text-blue-100 mb-4">
+//                     ✨ School Gallery
+//                   </p>
+//                   <h3 className="text-2xl sm:text-5xl font-extrabold leading-tight">Campus Stories in Motion</h3>
+//                   <p className="text-blue-100 mt-3 text-sm sm:text-lg leading-relaxed">
+//                     A fresh look at learning, creativity, discipline, sports and achievements — designed beautifully for mobile and desktop.
+//                   </p>
+//                 </div>
+
+//                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+//                   <div className="lg:col-span-5">
+//                     <div className="relative min-h-[310px] sm:min-h-[420px] rounded-[1.75rem] sm:rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-white to-blue-50 text-slate-900 shadow-2xl p-6 sm:p-8">
+//                       <div className="absolute -right-16 -top-16 w-52 h-52 rounded-full bg-blue-200"></div>
+//                       <div className="absolute right-6 bottom-4 text-[130px] sm:text-[190px] opacity-10 leading-none">🏫</div>
+//                       <div className="relative z-10 h-full flex flex-col justify-between">
+//                         <div>
+//                           <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-blue-600 text-white flex items-center justify-center text-4xl sm:text-5xl shadow-xl mb-6">🏫</div>
+//                           <p className="text-blue-700 font-extrabold mb-2 text-sm sm:text-base">Featured Campus Life</p>
+//                           <h4 className="text-2xl sm:text-4xl font-extrabold leading-tight mb-4">Where Every Day Builds Confidence</h4>
+//                           <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+//                             Students learn through smart classrooms, activities, reading, teamwork and celebrations that make school life memorable.
+//                           </p>
+//                         </div>
+//                         <div className="mt-8 bg-slate-950 text-white rounded-3xl p-5">
+//                           <p className="text-sm text-blue-200 font-semibold">AIIMS School Experience</p>
+//                           <p className="text-xl sm:text-2xl font-extrabold mt-1">Learn • Create • Grow</p>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+
+//                   <div className="lg:col-span-7">
+//                     <div className="flex lg:grid lg:grid-cols-2 gap-4 overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 snap-x snap-mandatory">
+//                       {[
+//                         { title: 'Smart Learning', detail: 'Modern teaching with focused digital classroom experiences.', icon: '💡', tone: 'from-blue-500 to-indigo-600' },
+//                         { title: 'Science Discovery', detail: 'Practical activities that turn curiosity into understanding.', icon: '🔬', tone: 'from-emerald-500 to-teal-600' },
+//                         { title: 'Sports Spirit', detail: 'Fitness, teamwork and discipline through healthy competition.', icon: '🏃', tone: 'from-orange-500 to-red-500' },
+//                         { title: 'Creative Stage', detail: 'Cultural programs that build confidence and expression.', icon: '🎭', tone: 'from-fuchsia-500 to-purple-600' },
+//                         { title: 'Reading Culture', detail: 'Library time that develops focus, knowledge and imagination.', icon: '📚', tone: 'from-cyan-500 to-blue-600' },
+//                         { title: 'Achievements', detail: 'Celebrating effort, progress and student success with pride.', icon: '🏆', tone: 'from-amber-400 to-orange-500' },
+//                       ].map((card) => (
+//                         <div key={card.title} className="min-w-[78%] sm:min-w-[300px] lg:min-w-0 snap-center group">
+//                           <div className="relative h-full min-h-[190px] sm:min-h-[220px] overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] border border-white/15 bg-white/10 backdrop-blur-xl p-5 sm:p-6 shadow-xl transition duration-300 hover:-translate-y-1 hover:bg-white/15">
+//                             <div className={`absolute -right-10 -top-10 w-32 h-32 rounded-full bg-gradient-to-br ${card.tone} opacity-70 blur-sm`}></div>
+//                             <div className="relative z-10">
+//                               <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.tone} flex items-center justify-center text-3xl shadow-lg mb-5`}>
+//                                 {card.icon}
+//                               </div>
+//                               <h4 className="text-lg sm:text-2xl font-extrabold mb-2 leading-tight">{card.title}</h4>
+//                               <p className="text-blue-100 text-sm sm:text-base leading-relaxed">{card.detail}</p>
+//                             </div>
+//                           </div>
+//                         </div>
+//                       ))}
+//                     </div>
+
+//                     <div className="lg:hidden flex items-center justify-center gap-2 mt-1 text-blue-200 text-xs font-semibold">
+//                       <span className="w-8 h-1 rounded-full bg-blue-300"></span>
+//                       Swipe to explore
+//                       <span className="w-8 h-1 rounded-full bg-blue-300"></span>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+
+//             <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-white shadow-2xl border border-blue-50 p-5 sm:p-10">
+//               <div className="absolute -top-20 -left-20 w-64 h-64 bg-blue-100 rounded-full blur-3xl"></div>
+//               <div className="absolute -bottom-24 -right-20 w-72 h-72 bg-purple-100 rounded-full blur-3xl"></div>
+
+//               <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 items-center">
+//                 <div className="lg:col-span-4">
+//                   <p className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 rounded-full px-4 py-2 text-xs sm:text-sm font-bold mb-4">
+//                     📸 Photo Gallery
+//                   </p>
+//                   <h3 className="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight">Swipe Photos Like a Real Album</h3>
+//                   <p className="text-gray-600 mt-3 text-sm sm:text-base leading-relaxed">
+//                     Tap next or swipe the cards. The front photo moves back and the next campus moment comes forward.
+//                   </p>
+
+//                   <div className="flex gap-3 mt-6">
+//                     <button onClick={() => setPhotoIndex((photoIndex + 5) % 6)} className="w-12 h-12 rounded-2xl bg-slate-900 text-white font-bold shadow-lg">‹</button>
+//                     <button onClick={() => setPhotoIndex((photoIndex + 1) % 6)} className="w-12 h-12 rounded-2xl bg-blue-600 text-white font-bold shadow-lg">›</button>
+//                   </div>
+//                 </div>
+
+//                 <div className="lg:col-span-8">
+//                   <div className="relative h-[360px] sm:h-[470px] max-w-xl mx-auto"
+//                     onTouchStart={(e) => {
+//                       e.currentTarget.dataset.startX = String(e.touches[0].clientX);
+//                     }}
+//                     onTouchEnd={(e) => {
+//                       const start = Number(e.currentTarget.dataset.startX || 0);
+//                       const end = e.changedTouches[0].clientX;
+//                       if (start - end > 40) setPhotoIndex((photoIndex + 1) % 6);
+//                       if (end - start > 40) setPhotoIndex((photoIndex + 5) % 6);
+//                     }}
+//                   >
+//                     {[
+//                       // Tomorrow, just replace these image paths with your real photos.
+//                       // Put your photos inside: public/gallery/
+//                       // Example: image: '/gallery/assembly.jpg'
+//                       { image: '', bg: 'from-blue-500 to-indigo-700' },
+//                       { image: '', bg: 'from-cyan-500 to-blue-700' },
+//                       { image: '', bg: 'from-emerald-500 to-green-700' },
+//                       { image: '', bg: 'from-orange-500 to-red-600' },
+//                       { image: '', bg: 'from-purple-500 to-pink-700' },
+//                       { image: '', bg: 'from-yellow-500 to-orange-600' },
+//                     ].map((photo, i) => {
+//                       const offset = (i - photoIndex + 6) % 6;
+//                       const visible = offset < 4;
+//                       return (
+//                         <div
+//                           key={photo.title}
+//                           onClick={() => setPhotoIndex(i)}
+//                           className={`absolute inset-0 transition-all duration-500 ease-out ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+//                           style={{
+//                             transform: `translateX(${offset * 18}px) translateY(${offset * 16}px) scale(${1 - offset * 0.055}) rotate(${offset === 0 ? 0 : offset % 2 ? -3 : 3}deg)`,
+//                             zIndex: 20 - offset,
+//                           }}
+//                         >
+//                           <div className={`h-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl bg-gradient-to-br ${photo.bg} text-white border-4 border-white`}>
+//                             <div className="relative h-full">
+//                               {photo.image ? (
+//                                 <img src={photo.image} alt="AIIMS Campus" className="absolute inset-0 w-full h-full object-cover" />
+//                               ) : (
+//                                 <div className={`absolute inset-0 bg-gradient-to-br ${photo.bg}`}></div>
+//                               )}
+//                               <div className="absolute inset-0 bg-black/10"></div>
+//                               <div className="absolute top-5 left-5 z-10">
+//                                 <span className="bg-white/20 backdrop-blur border border-white/20 rounded-full px-4 py-2 text-xs sm:text-sm font-bold">AIIMS Campus</span>
+//                               </div>
+//                             </div>
+//                           </div>
+//                         </div>
+//                       );
+//                     })}
+//                   </div>
+
+//                   <div className="flex justify-center gap-2 mt-5">
+//                     {[0, 1, 2, 3, 4, 5].map((dot) => (
+//                       <button key={dot} onClick={() => setPhotoIndex(dot)} className={photoIndex === dot ? 'w-8 h-2 rounded-full bg-blue-600' : 'w-2 h-2 rounded-full bg-blue-200'}></button>
+//                     ))}
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </section>
+
 //         <section className="px-4 sm:px-8 pb-10 sm:pb-20">
 //           <div className={results.length ? 'max-w-7xl mx-auto bg-green-50 border border-green-100 sm:border-green-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md sm:shadow-xl text-center' : 'max-w-7xl mx-auto bg-yellow-50 border border-yellow-100 sm:border-yellow-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md sm:shadow-xl text-center'}>
 //             <h3 className={results.length ? 'text-xl sm:text-3xl font-bold text-green-700 mb-2 sm:mb-3 leading-tight' : 'text-xl sm:text-3xl font-bold text-yellow-700 mb-2 sm:mb-3 leading-tight'}>{results.length ? '🎉 Congratulations! Latest results are now available.' : '📌 Results will be available soon.'}</h3>
@@ -1541,6 +1700,7 @@ export default function AIIMSSchoolPortalPreview() {
 //             </div>
 //           </div>
 //         </section>
+
 
 //         <section className="px-4 sm:px-8 pb-10 sm:pb-20">
 //           <div className="max-w-7xl mx-auto">
@@ -1624,10 +1784,47 @@ export default function AIIMSSchoolPortalPreview() {
 //           </div>
 //         </section>
 
-//         <footer className="bg-blue-700 text-white py-8 sm:py-10 text-center px-4">
-//           <img src={SCHOOL_LOGO} alt="School Logo" className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full object-cover border-2 border-white" />
-//           <h4 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">{SCHOOL_NAME}</h4>
-//           <p className="opacity-90 text-xs sm:text-base leading-relaxed">Built with love! Copyright @2026 Developed by Daris Nisar</p>
+//         <footer className="bg-slate-950 text-white px-4 sm:px-8 py-10 sm:py-14">
+//           <div className="max-w-7xl mx-auto">
+//             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+//               <div>
+//                 <div className="flex items-center gap-4 mb-4">
+//                   <img src={SCHOOL_LOGO} alt="School Logo" className="w-16 h-16 rounded-full object-cover border-2 border-white" />
+//                   <div>
+//                     <h4 className="text-xl sm:text-2xl font-extrabold">{SCHOOL_NAME}</h4>
+//                     <p className="text-slate-400 text-sm">{SCHOOL_TAGLINE}</p>
+//                   </div>
+//                 </div>
+//                 <p className="text-slate-300 text-sm leading-relaxed">
+//                   A smart digital portal for students, parents, results, notices and school updates.
+//                 </p>
+//               </div>
+
+//               <div>
+//                 <h5 className="text-lg font-bold mb-4">Contact Details</h5>
+//                 <div className="space-y-3 text-sm text-slate-300">
+//                   <p>📍 Address: AIIMS School Campus, Your City</p>
+//                   <p>📞 Phone: +91 98765 43210</p>
+//                   <p>✉️ Email: aiimsschool@example.com</p>
+//                   <p>🕘 Office Time: 9:00 AM - 3:00 PM</p>
+//                 </div>
+//               </div>
+
+//               <div>
+//                 <h5 className="text-lg font-bold mb-4">Quick Access</h5>
+//                 <div className="flex flex-wrap gap-3">
+//                   <button onClick={() => setPage('home')} className="bg-white/10 border border-white/15 px-5 py-3 rounded-2xl font-bold text-sm">Home</button>
+//                   <button onClick={() => setPage('student')} className="bg-blue-600 px-5 py-3 rounded-2xl font-bold text-sm">Student Portal</button>
+//                   <button onClick={() => setPage('admin')} className="bg-white text-slate-950 px-5 py-3 rounded-2xl font-bold text-sm">Admin Login</button>
+//                 </div>
+//               </div>
+//             </div>
+
+//             <div className="border-t border-white/10 mt-8 pt-6 flex flex-col sm:flex-row gap-3 justify-between items-center text-slate-400 text-xs sm:text-sm">
+//               <p>Copyright © 2026 {SCHOOL_NAME}. All rights reserved.</p>
+//               <p>Developed by Daris Nisar</p>
+//             </div>
+//           </div>
 //         </footer>
 //       </main>
 //     );
@@ -1854,3 +2051,834 @@ export default function AIIMSSchoolPortalPreview() {
 //     </div>
 //   );
 // }
+
+
+
+
+// // import React from 'react';
+// // import { createClient } from '@supabase/supabase-js';
+
+// // export default function AIIMSSchoolPortalPreview() {
+// //   const SCHOOL_NAME = 'AIIMS School Portal';
+// //   const SCHOOL_TAGLINE = 'Smart Student Management System';
+// //   const SCHOOL_LOGO = 'https://scontent.fblr21-2.fna.fbcdn.net/v/t39.30808-6/481794218_1170107788457435_8543515203972674516_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=jBZWdszteWEQ7kNvwFcGSMI&_nc_oc=AdrmLTYyk1XS-tVGXWWqLxlDAQpmHTFtIWXzLiioeNaU-JmNJADCQ7TqeFbsCyxsLBo&_nc_zt=23&_nc_ht=scontent.fblr21-2.fna&_nc_gid=zxsPltKDiwMUtS1OZQD0BQ&_nc_ss=7b289&oh=00_Af4dzYoey9iNJQ_1gD0BKkrBRcQVwA9guqhF8A5fwvdx4Q&oe=6A12B2C5';
+// //   const ADMIN_EMAIL = 'admin@aiims.edu';
+// //   const ADMIN_PASSWORD = 'admin@123';
+// //   const PASS_MARK = 35;
+// //   const SUBJECTS = ['Maths', 'Science', 'English', 'Computer'];
+// //   const emptyStudent = { roll: '', name: '', className: '', section: '', fatherName: '', phone: '' };
+// //   const emptyResult = { roll: '', exam: '', maths: '', science: '', english: '', computer: '' };
+
+// //   const SUPABASE_URL = "https://gnorozozjxjykefbppop.supabase.co";
+// //   const SUPABASE_KEY = "sb_publishable_CqJFBUDKjwry4WH0G0DsqQ_CztYPs5j";
+// //   const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// //   const normalizeStudent = (s) => ({
+// //     roll: String(s?.roll || '').trim(),
+// //     name: s?.name || '',
+// //     className: s?.className || s?.classname || s?.class_name || '',
+// //     section: s?.section || '',
+// //     fatherName: s?.fatherName || s?.fathername || s?.father_name || '',
+// //     phone: s?.phone || ''
+// //   });
+
+// //   const normalizeResult = (r) => ({
+// //     roll: String(r?.roll || '').trim(),
+// //     exam: r?.exam || '',
+// //     maths: r?.maths || '',
+// //     science: r?.science || '',
+// //     english: r?.english || '',
+// //     computer: r?.computer || ''
+// //   });
+
+// //   const load = (key, fallback) => {
+// //     try {
+// //       const saved = localStorage.getItem(key);
+// //       return saved ? JSON.parse(saved) : fallback;
+// //     } catch {
+// //       return fallback;
+// //     }
+// //   };
+
+// //   const [page, setPage] = React.useState('home');
+// //   const [adminTab, setAdminTab] = React.useState('dashboard');
+// //   const [adminLoggedIn, setAdminLoggedIn] = React.useState(() => load('aiims_admin_logged_in', false));
+// //   const [students, setStudents] = React.useState(() => load('aiims_students', []));
+// //   const [results, setResults] = React.useState(() => load('aiims_results', []));
+// //   const [notices, setNotices] = React.useState(() => load('aiims_notices', ['Mid-Term Exams begin from 15 June 2026', 'Science Exhibition registrations are now open', 'Parent-Teacher meeting on 22 June 2026']));
+// //   const [studentRoll, setStudentRoll] = React.useState('');
+// //   const [studentError, setStudentError] = React.useState('');
+// //   const [loggedStudent, setLoggedStudent] = React.useState(null);
+// //   const [adminEmail, setAdminEmail] = React.useState('');
+// //   const [adminPassword, setAdminPassword] = React.useState('');
+// //   const [studentData, setStudentData] = React.useState(emptyStudent);
+// //   const [resultData, setResultData] = React.useState(emptyResult);
+// //   const [bulkStudents, setBulkStudents] = React.useState('');
+// //   const [bulkResults, setBulkResults] = React.useState('');
+// //   const [noticeText, setNoticeText] = React.useState('');
+// //   const [studentSearch, setStudentSearch] = React.useState('');
+// //   const [resultSearch, setResultSearch] = React.useState('');
+// //   const [studentClassFilter, setStudentClassFilter] = React.useState('all');
+// //   const [studentSectionFilter, setStudentSectionFilter] = React.useState('all');
+// //   const [resultClassFilter, setResultClassFilter] = React.useState('all');
+// //   const [resultSectionFilter, setResultSectionFilter] = React.useState('all');
+// //   const [editingStudentRoll, setEditingStudentRoll] = React.useState(null);
+// //   const [editingResultRoll, setEditingResultRoll] = React.useState(null);
+// //   const [message, setMessage] = React.useState('');
+// //   const [syncStatus, setSyncStatus] = React.useState('Checking online database...');
+// //   const [onlineLoading, setOnlineLoading] = React.useState(true);
+
+// //   React.useEffect(() => localStorage.setItem('aiims_students', JSON.stringify(students)), [students]);
+// //   React.useEffect(() => localStorage.setItem('aiims_results', JSON.stringify(results)), [results]);
+// //   React.useEffect(() => localStorage.setItem('aiims_notices', JSON.stringify(notices)), [notices]);
+// //   React.useEffect(() => localStorage.setItem('aiims_admin_logged_in', JSON.stringify(adminLoggedIn)), [adminLoggedIn]);
+
+// //   React.useEffect(() => {
+// //     const loadOnlineData = async () => {
+// //       setOnlineLoading(true);
+// //       try {
+// //         const { data: onlineStudents, error: studentsError } = await supabase.from('students').select('*');
+// //         const { data: onlineResults, error: resultsError } = await supabase.from('results').select('*');
+// //         const { data: onlineNotices, error: noticesError } = await supabase.from('notices').select('*').order('order_index', { ascending: true });
+
+// //         if (studentsError || resultsError || noticesError) {
+// //           console.error('Supabase load error:', studentsError || resultsError || noticesError);
+// //           setSyncStatus('Online database error. Check Supabase tables/policies.');
+// //           setOnlineLoading(false);
+// //           return;
+// //         }
+
+// //         setStudents((onlineStudents || []).map(normalizeStudent));
+// //         setResults((onlineResults || []).map(normalizeResult));
+// //         if (onlineNotices && onlineNotices.length) setNotices(onlineNotices.map((n) => n.text).filter(Boolean));
+// //         setSyncStatus('Online database connected.');
+// //       } catch (err) {
+// //         console.error('Supabase connection error:', err);
+// //         setSyncStatus('Online database not connected.');
+// //       } finally {
+// //         setOnlineLoading(false);
+// //       }
+// //     };
+
+// //     loadOnlineData();
+
+// //     return () => {};
+// //   },
+// // );
+
+// //   const saveStudentOnline = async (student) => {
+// //     const cleanStudent = normalizeStudent(student);
+// //     if (!cleanStudent.roll) return false;
+// //     const { error } = await supabase.from('students').upsert(cleanStudent, { onConflict: 'roll' });
+// //     if (error) {
+// //       console.error('Student save failed:', error);
+// //       setSyncStatus('Student save failed: ' + error.message);
+// //       alert('Student was saved only on this device. Supabase error: ' + error.message);
+// //       return false;
+// //     }
+// //     setSyncStatus('Student saved online.');
+// //     return true;
+// //   };
+
+// //   const saveResultOnline = async (result) => {
+// //     const cleanResult = normalizeResult(result);
+// //     if (!cleanResult.roll) return false;
+// //     const { error } = await supabase.from('results').upsert(cleanResult, { onConflict: 'roll' });
+// //     if (error) {
+// //       console.error('Result save failed:', error);
+// //       setSyncStatus('Result save failed: ' + error.message);
+// //       alert('Result was saved only on this device. Supabase error: ' + error.message);
+// //       return false;
+// //     }
+// //     setSyncStatus('Result saved online.');
+// //     return true;
+// //   };
+
+// //   const deleteStudentOnline = async (roll) => {
+// //     if (!roll) return false;
+// //     const { error } = await supabase.from('students').delete().eq('roll', String(roll));
+// //     if (error) {
+// //       console.error('Student delete failed:', error);
+// //       setSyncStatus('Student delete failed: ' + error.message);
+// //       return false;
+// //     }
+// //     return true;
+// //   };
+
+// //   const deleteResultOnline = async (roll) => {
+// //     if (!roll) return false;
+// //     const { error } = await supabase.from('results').delete().eq('roll', String(roll));
+// //     if (error) {
+// //       console.error('Result delete failed:', error);
+// //       setSyncStatus('Result delete failed: ' + error.message);
+// //       return false;
+// //     }
+// //     return true;
+// //   };
+
+// //   const saveNoticesOnline = async (list) => {
+// //     const { error: deleteError } = await supabase.from('notices').delete().neq('id', 0);
+// //     if (deleteError) {
+// //       console.error('Notice delete failed:', deleteError);
+// //       setSyncStatus('Notice save failed: ' + deleteError.message);
+// //       return false;
+// //     }
+
+// //     const rows = (list || []).map((text, index) => ({ text, order_index: index }));
+// //     if (!rows.length) return true;
+
+// //     const { error } = await supabase.from('notices').insert(rows);
+// //     if (error) {
+// //       console.error('Notice save failed:', error);
+// //       setSyncStatus('Notice save failed: ' + error.message);
+// //       return false;
+// //     }
+
+// //     setSyncStatus('Notices saved online.');
+// //     return true;
+// //   };
+
+// //   const syncLocalDataOnline = async () => {
+// //     const studentResults = await Promise.all(students.map(saveStudentOnline));
+// //     const resultResults = await Promise.all(results.map(saveResultOnline));
+// //     await saveNoticesOnline(notices);
+
+// //     const failed = studentResults.filter((x) => x === false).length + resultResults.filter((x) => x === false).length;
+// //     if (failed) {
+// //       show(`${failed} items failed to sync. Check the online database message.`);
+// //     } else {
+// //       setSyncStatus('All local data synced online.');
+// //       show('Local data synced online.');
+// //     }
+// //   };
+
+// //   void saveNoticesOnline;
+// //   void syncLocalDataOnline;
+
+// //   void onlineLoading;
+
+// //   const cleanRoll = (v) => String(v || '').replace(/[^0-9]/g, '').slice(0, 5);
+// //   const cleanPhone = (v) => String(v || '').replace(/[^0-9]/g, '').slice(0, 10);
+// //   const validRoll = (v) => /^[0-9]{5}$/.test(String(v));
+// //   const validMark = (v) => v !== '' && !Number.isNaN(Number(v)) && Number(v) >= 0 && Number(v) <= 100;
+// //   const csvLine = (line) => line.split(',').map((x) => x.trim());
+// //   const show = (text) => { setMessage(text); setTimeout(() => setMessage(''), 3000); };
+
+// //   const stats = (r) => {
+// //     if (!r) return { total: 0, percent: '0.00', pass: false };
+// //     const marks = [Number(r.maths), Number(r.science), Number(r.english), Number(r.computer)];
+// //     const total = marks.reduce((a, b) => a + b, 0);
+// //     return { total, percent: ((total / 400) * 100).toFixed(2), pass: marks.every((m) => m >= PASS_MARK) };
+// //   };
+
+// //   const classOptions = React.useMemo(() => [...new Set(students.map((s) => s.className).filter(Boolean))].sort(), [students]);
+// //   const sectionOptions = React.useMemo(() => [...new Set(students.map((s) => s.section).filter(Boolean))].sort(), [students]);
+
+// //   const classPerformanceSummary = React.useMemo(() => {
+// //     const groups = {};
+// //     results.forEach((r) => {
+// //       const student = students.find((s) => s.roll === r.roll);
+// //       if (!student?.className) return;
+// //       if (!groups[student.className]) groups[student.className] = [];
+// //       groups[student.className].push(Number(stats(r).percent));
+// //     });
+// //     return Object.entries(groups).map(([className, percentages]) => ({
+// //       className,
+// //       students: percentages.length,
+// //       average: (percentages.reduce((sum, value) => sum + value, 0) / percentages.length).toFixed(2),
+// //     })).sort((a, b) => String(a.className).localeCompare(String(b.className), undefined, { numeric: true }));
+// //   }, [results, students]);
+
+// //   const getRankDetails = (roll) => {
+// //     const ranked = results.map((r) => {
+// //       const student = students.find((s) => s.roll === r.roll);
+// //       return { ...r, student, percentNumber: Number(stats(r).percent) };
+// //     }).filter((item) => item.student).sort((a, b) => b.percentNumber - a.percentNumber);
+// //     const current = ranked.find((item) => item.roll === roll);
+// //     if (!current) return { schoolRank: '-', classRank: '-', sectionRank: '-' };
+// //     const classList = ranked.filter((item) => item.student?.className === current.student?.className);
+// //     const sectionList = ranked.filter((item) => item.student?.className === current.student?.className && item.student?.section === current.student?.section);
+// //     return {
+// //       schoolRank: ranked.findIndex((item) => item.roll === roll) + 1,
+// //       classRank: classList.findIndex((item) => item.roll === roll) + 1,
+// //       sectionRank: sectionList.findIndex((item) => item.roll === roll) + 1,
+// //     };
+// //   };
+
+// //   const filteredStudents = students.filter((s) => {
+// //     const q = studentSearch.toLowerCase();
+// //     return (s.roll.includes(studentSearch) || s.name.toLowerCase().includes(q) || s.className.toLowerCase().includes(q) || s.section.toLowerCase().includes(q) || (s.fatherName || '').toLowerCase().includes(q) || (s.phone || '').includes(studentSearch)) && (studentClassFilter === 'all' || s.className === studentClassFilter) && (studentSectionFilter === 'all' || s.section === studentSectionFilter);
+// //   });
+
+// //   const filteredResults = results.filter((r) => {
+// //     const q = resultSearch.toLowerCase();
+// //     const s = students.find((x) => x.roll === r.roll);
+// //     return (r.roll.includes(resultSearch) || r.exam.toLowerCase().includes(q) || (s?.name || '').toLowerCase().includes(q)) && (resultClassFilter === 'all' || s?.className === resultClassFilter) && (resultSectionFilter === 'all' || s?.section === resultSectionFilter);
+// //   });
+
+// //   const Input = React.useMemo(() => function InputField({ value, onChange, placeholder, type = 'text' }) {
+// //     return <input type={type} value={value} onChange={onChange} placeholder={placeholder} className="w-full border p-4 rounded-2xl outline-none focus:ring-2 focus:ring-blue-500" />;
+// //   }, []);
+
+// //   const Select = React.useMemo(() => function SelectField({ value, onChange, label, options }) {
+// //     return <select value={value} onChange={onChange} className="w-full border p-4 rounded-2xl outline-none focus:ring-2 focus:ring-blue-500"><option value="all">All {label}</option>{options.map((o) => <option key={o} value={o}>{o}</option>)}</select>;
+// //   }, []);
+
+// //   const addStudent = async () => {
+// //     if (!studentData.name || !studentData.roll || !studentData.className || !studentData.section) return alert('Please fill name, roll, class and section.');
+// //     if (!validRoll(studentData.roll)) return alert('Roll number must be exactly 5 digits.');
+// //     if (students.some((s) => s.roll === studentData.roll && s.roll !== editingStudentRoll)) return alert('This roll number already exists.');
+// //     if (editingStudentRoll) {
+// //       setStudents(students.map((s) => s.roll === editingStudentRoll ? studentData : s));
+// //       setResults(results.map((r) => r.roll === editingStudentRoll ? { ...r, roll: studentData.roll } : r));
+// //       if (editingStudentRoll !== studentData.roll) await deleteStudentOnline(editingStudentRoll);
+// //       await saveStudentOnline(studentData);
+// //       show('Student updated successfully.');
+// //     } else {
+// //       setStudents([...students, studentData]);
+// //       await saveStudentOnline(studentData);
+// //       show('Student added successfully.');
+// //     }
+// //     setStudentData(emptyStudent);
+// //     setEditingStudentRoll(null);
+// //   };
+
+// //   const importStudents = async (text) => {
+// //     const lines = text.split('\n').map((l) => l.trim()).filter(Boolean);
+// //     const oldRolls = new Set(students.map((s) => s.roll));
+// //     const added = [];
+// //     let skipped = 0;
+// //     lines.forEach((line, i) => {
+// //       const p = csvLine(line);
+// //       if (i === 0 && p[0]?.toLowerCase().includes('roll')) return;
+// //       const s = { roll: cleanRoll(p[0]), name: p[1] || '', className: p[2] || '', section: p[3] || '', fatherName: p[4] || '', phone: cleanPhone(p[5]) };
+// //       if (!validRoll(s.roll) || !s.name || !s.className || !s.section || oldRolls.has(s.roll) || added.some((x) => x.roll === s.roll)) skipped += 1;
+// //       else added.push(s);
+// //     });
+// //     if (added.length) {
+// //       setStudents((prev) => [...prev, ...added]);
+// //       await Promise.all(added.map(saveStudentOnline));
+// //     }
+// //     return { added: added.length, skipped };
+// //   };
+
+// //   const importResults = async (text) => {
+// //     const lines = text.split('\n').map((l) => l.trim()).filter(Boolean);
+// //     const added = [];
+// //     let skipped = 0;
+// //     lines.forEach((line, i) => {
+// //       const [rollRaw, exam, maths, science, english, computer] = csvLine(line);
+// //       if (i === 0 && rollRaw?.toLowerCase().includes('roll')) return;
+// //       const roll = cleanRoll(rollRaw);
+// //       const marks = [maths, science, english, computer];
+// //       if (!validRoll(roll) || !exam || marks.some((m) => !validMark(m))) skipped += 1;
+// //       else added.push({ roll, exam, maths, science, english, computer });
+// //     });
+// //     if (added.length) {
+// //       const rolls = new Set(added.map((r) => r.roll));
+// //       setResults((prev) => [...prev.filter((r) => !rolls.has(r.roll)), ...added]);
+// //     }
+// //     return { added: added.length, skipped };
+// //   };
+
+// //   const uploadFile = (event, importer, label) => {
+// //     const file = event.target.files?.[0];
+// //     if (!file) return;
+// //     const reader = new FileReader();
+// //     reader.onload = () => {
+// //       const report = importer(String(reader.result || ''));
+// //       if (!report.added) alert(`No valid ${label} found in CSV.`);
+// //       else show(`${report.added} ${label} imported. ${report.skipped ? `${report.skipped} rows skipped.` : ''}`);
+// //       event.target.value = '';
+// //     };
+// //     reader.readAsText(file);
+// //   };
+
+// //   const addResult = async () => {
+// //     const marks = [resultData.maths, resultData.science, resultData.english, resultData.computer];
+// //     if (!validRoll(resultData.roll) || !resultData.exam || marks.some((m) => !validMark(m))) return alert('Please enter valid roll, exam and marks 0-100.');
+// //     setResults([...results.filter((r) => r.roll !== (editingResultRoll || resultData.roll)), resultData]);
+// //     if (editingResultRoll && editingResultRoll !== resultData.roll) await deleteResultOnline(editingResultRoll);
+// //     await saveResultOnline(resultData);
+// //     show(editingResultRoll ? 'Result updated successfully.' : 'Result uploaded successfully.');
+// //     setResultData(emptyResult);
+// //     setEditingResultRoll(null);
+// //   };
+
+// //   const downloadCSV = (filename, rows) => {
+// //     const csv = rows.map((row) => row.map((cell) => `"${String(cell ?? '').replace(/"/g, '""')}"`).join(',')).join('\n');
+// //     const blob = new Blob([csv], { type: 'text/csv' });
+// //     const url = URL.createObjectURL(blob);
+// //     const a = document.createElement('a');
+// //     a.href = url;
+// //     a.download = filename;
+// //     a.click();
+// //     URL.revokeObjectURL(url);
+// //   };
+
+// //   const loginStudent = async () => {
+// //     const roll = cleanRoll(studentRoll);
+
+// //     if (!validRoll(roll)) {
+// //       setStudentError('Please enter a valid 5 digit roll number.');
+// //       return;
+// //     }
+
+// //     setStudentError('Checking online database...');
+
+// //     let student = students.find((s) => String(s.roll).trim() === roll);
+
+// //     const { data: onlineStudent, error: studentLookupError } = await supabase
+// //       .from('students')
+// //       .select('*')
+// //       .eq('roll', roll)
+// //       .maybeSingle();
+
+// //     if (studentLookupError) {
+// //       console.error('Student lookup failed:', studentLookupError);
+// //       setStudentError('Online database error: ' + studentLookupError.message);
+// //       return;
+// //     }
+
+// //     if (onlineStudent) {
+// //       student = normalizeStudent(onlineStudent);
+// //       setStudents((prev) => prev.some((s) => String(s.roll).trim() === roll) ? prev.map((s) => String(s.roll).trim() === roll ? student : s) : [...prev, student]);
+// //     }
+
+// //     if (!student) {
+// //       setStudentError('Student not found online. Please add/sync this roll number from Admin first.');
+// //       return;
+// //     }
+
+// //     const { data: onlineResult, error: resultLookupError } = await supabase
+// //       .from('results')
+// //       .select('*')
+// //       .eq('roll', roll)
+// //       .maybeSingle();
+
+// //     if (resultLookupError) {
+// //       console.error('Result lookup failed:', resultLookupError);
+// //       setStudentError('Result lookup error: ' + resultLookupError.message);
+// //       return;
+// //     }
+
+// //     if (onlineResult) {
+// //       const cleanResult = normalizeResult(onlineResult);
+// //       setResults((prev) => [...prev.filter((r) => String(r.roll).trim() !== roll), cleanResult]);
+// //     }
+
+// //     setLoggedStudent(student);
+// //     setStudentRoll(roll);
+// //     setStudentError('');
+// //     setPage('studentDashboard');
+// //   };
+
+// //   const loginAdmin = () => {
+// //     if (adminEmail === ADMIN_EMAIL && adminPassword === ADMIN_PASSWORD) {
+// //       setAdminLoggedIn(true);
+// //       setPage('adminDashboard');
+// //       setAdminTab('dashboard');
+// //       setAdminEmail('');
+// //       setAdminPassword('');
+// //     } else {
+// //       alert('Invalid admin login details.');
+// //     }
+// //   };
+
+// //   const logoutAdmin = () => {
+// //     setAdminLoggedIn(false);
+// //     localStorage.removeItem('aiims_admin_logged_in');
+// //     setPage('admin');
+// //     setAdminTab('dashboard');
+// //   };
+
+// //   const Home = () => {
+// //     const topResults = results.map((r) => {
+// //       const student = students.find((s) => s.roll === r.roll);
+// //       return { ...r, studentName: student?.name || 'Student', className: student?.className || '-', section: student?.section || '-', ...stats(r) };
+// //     }).sort((a, b) => Number(b.percent) - Number(a.percent)).slice(0, 3);
+
+// //     const events = [
+// //       { title: 'Annual Day', date: 'Coming Soon', detail: 'Cultural programs, awards and student performances.' },
+// //       { title: 'Sports Day', date: 'Coming Soon', detail: 'Track events, team games and house competitions.' },
+// //       { title: 'Parent-Teacher Meeting', date: 'Coming Soon', detail: 'Parents can meet teachers and discuss student progress.' },
+// //     ];
+
+// //     const parentInfo = [
+// //       { title: 'Office Timing', value: '9:00 AM - 3:00 PM' },
+// //       { title: 'Fee Counter', value: '10:00 AM - 2:00 PM' },
+// //       { title: 'Required Documents', value: 'Birth Certificate, Aadhaar, Photos, Previous Report Card' },
+// //       { title: 'Contact Number', value: '+91 98765 43210' },
+// //     ];
+
+// //     const faqs = [
+// //       { question: 'How can students check their result?', answer: 'Students can click Student Login and enter their 5 digit roll number to view their result.' },
+// //       { question: 'What should parents do for admission enquiry?', answer: 'Parents can contact the school office during office timing for admission details and required documents.' },
+// //       { question: 'Where are school notices shown?', answer: 'Latest announcements are shown on the home page and can be updated from the admin dashboard.' },
+// //       { question: 'What documents are required for admission?', answer: 'Birth certificate, Aadhaar card, passport size photos and previous report card are commonly required.' },
+// //     ];
+
+// //     return (
+// //       <main>
+// //         <section className="px-4 sm:px-8 py-10 sm:py-20 text-center">
+// //           <img src={SCHOOL_LOGO} alt="School Logo" className="w-24 h-24 sm:w-36 sm:h-36 mx-auto mb-5 sm:mb-8 rounded-full object-cover shadow-md sm:shadow-xl border-2 sm:border-4 border-white" />
+// //           <h2 className="text-3xl sm:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight">Welcome to <span className="text-blue-700">AIIMS</span></h2>
+// //           <p className="max-w-2xl mx-auto text-sm sm:text-lg text-gray-600 mb-6 sm:mb-10 leading-relaxed">A modern school management and result portal where students can securely check results, notices, attendance, and more.</p>
+// //           <button onClick={() => setPage('student')} className="bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-sm sm:text-lg shadow-md sm:shadow-lg font-bold">Explore Dashboard</button>
+// //         </section>
+
+// //         <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+// //           <div className={results.length ? 'max-w-7xl mx-auto bg-green-50 border border-green-100 sm:border-green-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md sm:shadow-xl text-center' : 'max-w-7xl mx-auto bg-yellow-50 border border-yellow-100 sm:border-yellow-200 rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-md sm:shadow-xl text-center'}>
+// //             <h3 className={results.length ? 'text-xl sm:text-3xl font-bold text-green-700 mb-2 sm:mb-3 leading-tight' : 'text-xl sm:text-3xl font-bold text-yellow-700 mb-2 sm:mb-3 leading-tight'}>{results.length ? '🎉 Congratulations! Latest results are now available.' : '📌 Results will be available soon.'}</h3>
+// //             <p className="text-gray-700 text-sm sm:text-lg leading-relaxed">{results.length ? 'Students can login using their roll number to check percentage, pass/fail status and rank.' : 'Please keep checking latest announcements for result updates.'}</p>
+// //             <button onClick={() => setPage('student')} className={results.length ? 'mt-5 sm:mt-6 bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base' : 'mt-5 sm:mt-6 bg-yellow-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base'}>{results.length ? 'Check Result Now' : 'Go to Student Login'}</button>
+// //           </div>
+// //         </section>
+
+// //         <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+// //           <h3 className="text-2xl sm:text-4xl font-bold text-center mb-6 sm:mb-12">Portal Features</h3>
+// //           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8 max-w-7xl mx-auto">
+// //             {['Secure Student Login', 'Online Result System', 'Bulk Upload', 'Admin Dashboard'].map((f) => (
+// //               <div key={f} className="bg-white p-4 sm:p-8 rounded-2xl sm:rounded-3xl shadow-md sm:shadow-lg">
+// //                 <div className="text-3xl sm:text-5xl mb-3 sm:mb-4">📘</div>
+// //                 <h4 className="text-sm sm:text-xl font-bold mb-2 sm:mb-3 leading-tight">{f}</h4>
+// //                 <p className="text-gray-600 text-xs sm:text-base leading-relaxed">Responsive system designed for students and school administration.</p>
+// //               </div>
+// //             ))}
+// //           </div>
+// //         </section>
+
+// //         <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+// //           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
+// //             <div className="bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-10">
+// //               <p className="text-blue-700 font-bold mb-2 sm:mb-3 text-sm sm:text-base">About Our School</p>
+// //               <h3 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-6 leading-tight">Building Bright Futures With Smart Learning</h3>
+// //               <p className="text-gray-600 text-sm sm:text-lg leading-relaxed mb-5 sm:mb-6">AIIMS School focuses on discipline, quality education, digital learning, and student growth.</p>
+// //               <div className="grid grid-cols-3 gap-3 sm:gap-4">
+// //                 <div className="bg-blue-50 p-3 sm:p-5 rounded-xl sm:rounded-2xl text-center"><h4 className="text-xl sm:text-3xl font-bold text-blue-700">{students.length || '3000+'}</h4><p className="text-gray-600 text-[11px] sm:text-sm mt-1">Students</p></div>
+// //                 <div className="bg-green-50 p-3 sm:p-5 rounded-xl sm:rounded-2xl text-center"><h4 className="text-xl sm:text-3xl font-bold text-green-700">12+</h4><p className="text-gray-600 text-[11px] sm:text-sm mt-1">Classes</p></div>
+// //                 <div className="bg-purple-50 p-3 sm:p-5 rounded-xl sm:rounded-2xl text-center"><h4 className="text-xl sm:text-3xl font-bold text-purple-700">{results.length}</h4><p className="text-gray-600 text-[11px] sm:text-sm mt-1">Results</p></div>
+// //               </div>
+// //             </div>
+
+// //             <div className="bg-blue-700 text-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-10">
+// //               <p className="font-bold opacity-90 mb-2 sm:mb-3 text-sm sm:text-base">Admissions Open</p>
+// //               <h3 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-5 leading-tight">Admissions Open for 2026-27</h3>
+// //               <p className="text-blue-100 text-sm sm:text-lg leading-relaxed mb-5 sm:mb-8">Contact the school office for admission details, fee structure, documents required, and class availability.</p>
+// //               <button onClick={() => setPage('student')} className="bg-white text-blue-700 px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base">Student Portal</button>
+// //             </div>
+// //           </div>
+// //         </section>
+
+// //         <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+// //           <div className="max-w-7xl mx-auto">
+// //             <h3 className="text-2xl sm:text-4xl font-bold text-center mb-2 sm:mb-3 text-blue-700">Top 3 Performers</h3>
+// //             <p className="text-center text-gray-500 mb-6 sm:mb-12 text-sm sm:text-base">Only the best 3 students are shown here based on uploaded results.</p>
+// //             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
+// //               {topResults.length ? topResults.map((r, index) => (
+// //                 <div key={r.roll} className="bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-8 text-center">
+// //                   <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">🏆</div>
+// //                   <p className="text-gray-500 font-bold text-sm sm:text-base">Rank {index + 1}</p>
+// //                   <h4 className="text-xl sm:text-2xl font-bold mt-2">{r.studentName}</h4>
+// //                   <p className="text-gray-500 text-sm sm:text-base">Class {r.className} - Section {r.section}</p>
+// //                   <div className="mt-4 sm:mt-5 bg-green-50 text-green-700 rounded-xl sm:rounded-2xl p-3 sm:p-4"><p className="text-xs sm:text-sm font-semibold">Percentage</p><h5 className="text-2xl sm:text-3xl font-bold">{r.percent}%</h5></div>
+// //                 </div>
+// //               )) : [1, 2, 3].map((x) => (
+// //                 <div key={x} className="bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-8 text-center">
+// //                   <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">🏆</div>
+// //                   <h4 className="text-xl sm:text-2xl font-bold">Topper Name</h4>
+// //                   <p className="text-gray-500 text-sm sm:text-base">Will appear after results are uploaded</p>
+// //                   <div className="mt-4 sm:mt-5 bg-blue-50 text-blue-700 rounded-xl sm:rounded-2xl p-3 sm:p-4"><p className="font-semibold text-sm sm:text-base">Result Pending</p></div>
+// //                 </div>
+// //               ))}
+// //             </div>
+// //           </div>
+// //         </section>
+
+// //         <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+// //           <div className="max-w-7xl mx-auto">
+// //             <h3 className="text-2xl sm:text-4xl font-bold text-center mb-6 sm:mb-12">Upcoming Events</h3>
+// //             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
+// //               {events.map((event) => (
+// //                 <div key={event.title} className="bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-8">
+// //                   <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">📅</div>
+// //                   <h4 className="text-xl sm:text-2xl font-bold text-blue-700 mb-2">{event.title}</h4>
+// //                   <p className="font-semibold text-gray-500 mb-3 sm:mb-4 text-sm sm:text-base">{event.date}</p>
+// //                   <p className="text-gray-600 leading-relaxed text-sm sm:text-base">{event.detail}</p>
+// //                 </div>
+// //               ))}
+// //             </div>
+// //           </div>
+// //         </section>
+
+// //         <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+// //           <div className="max-w-7xl mx-auto bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-10">
+// //             <h3 className="text-2xl sm:text-4xl font-bold text-center mb-6 sm:mb-10 text-blue-700">Parent Information</h3>
+// //             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+// //               {parentInfo.map((info) => (
+// //                 <div key={info.title} className="bg-blue-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl">
+// //                   <h4 className="text-sm sm:text-lg font-bold text-blue-700 mb-1 sm:mb-2 leading-tight">{info.title}</h4>
+// //                   <p className="text-gray-700 text-xs sm:text-base leading-relaxed">{info.value}</p>
+// //                 </div>
+// //               ))}
+// //             </div>
+// //           </div>
+// //         </section>
+
+// //         <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+// //           <div className="max-w-6xl mx-auto bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-10">
+// //             <h3 className="text-2xl sm:text-4xl font-bold text-center mb-6 sm:mb-10 text-blue-700">Frequently Asked Questions</h3>
+// //             <div className="space-y-3 sm:space-y-4">
+// //               {faqs.map((faq) => (
+// //                 <div key={faq.question} className="bg-gray-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl">
+// //                   <h4 className="text-sm sm:text-lg font-bold text-gray-800 mb-1 sm:mb-2 leading-tight">{faq.question}</h4>
+// //                   <p className="text-gray-600 text-xs sm:text-base leading-relaxed">{faq.answer}</p>
+// //                 </div>
+// //               ))}
+// //             </div>
+// //           </div>
+// //         </section>
+
+// //         <section className="px-4 sm:px-8 pb-10 sm:pb-20">
+// //           <div className="max-w-6xl mx-auto bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-5 sm:p-10">
+// //             <h3 className="text-2xl sm:text-4xl font-bold mb-6 sm:mb-8 text-center text-blue-700">Latest Announcements</h3>
+// //             <div className="space-y-3 sm:space-y-4">
+// //               {notices.map((n, i) => (
+// //                 <div key={i} className="bg-blue-50 border-l-2 sm:border-l-4 border-blue-700 p-4 sm:p-5 rounded-xl sm:rounded-2xl">
+// //                   <p className="font-medium text-sm sm:text-lg leading-relaxed">📢 {n}</p>
+// //                 </div>
+// //               ))}
+// //             </div>
+// //           </div>
+// //         </section>
+
+// //         <footer className="bg-blue-700 text-white py-8 sm:py-10 text-center px-4">
+// //           <img src={SCHOOL_LOGO} alt="School Logo" className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full object-cover border-2 border-white" />
+// //           <h4 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">{SCHOOL_NAME}</h4>
+// //           <p className="opacity-90 text-xs sm:text-base leading-relaxed">Built with love! Copyright @2026 Developed by Daris Nisar</p>
+// //         </footer>
+// //       </main>
+// //     );
+// //   };
+
+// //   const StudentLogin = () => <main className="min-h-screen flex items-center justify-center p-6"><div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md"><h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Student Login</h2><p className="text-xs text-gray-500 text-center mb-4">{syncStatus}</p><Input inputMode="numeric" autoComplete="off" value={studentRoll} onChange={(e) => setStudentRoll(cleanRoll(e.target.value))} placeholder="Enter 5 Digit Roll Number" /><button onClick={loginStudent} className="w-full bg-blue-600 text-white p-4 rounded-2xl mt-4 font-bold">Login</button>{studentError && <p className="text-red-600 mt-4 text-center">{studentError}</p>}</div></main>;
+
+// //   const AdminLogin = () => <main className="min-h-screen flex items-center justify-center p-6"><div className="bg-white rounded-3xl shadow-2xl p-8 w-full max-w-md"><h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Admin Login</h2><div className="space-y-4"><Input type="email" autoComplete="username" value={adminEmail} onChange={(e) => setAdminEmail(e.target.value)} placeholder="Admin Email" /><Input type="password" autoComplete="current-password" value={adminPassword} onChange={(e) => setAdminPassword(e.target.value)} placeholder="Admin Password" /></div><button onClick={loginAdmin} className="w-full bg-blue-600 text-white p-4 rounded-2xl mt-4 font-bold">Login</button><p className="text-xs text-gray-400 mt-4 text-center">Admin details are hidden for security.</p></div></main>;
+
+// //   const StudentDashboard = () => {
+// //     const r = results.find((x) => x.roll === studentRoll);
+// //     const st = stats(r);
+// //     const rank = getRankDetails(studentRoll);
+  
+// //     return (
+// //       <main className="px-3 py-4 sm:p-8 max-w-5xl mx-auto">
+// //         <div className="bg-white rounded-2xl sm:rounded-3xl shadow-md sm:shadow-xl p-4 sm:p-8">
+// //           <h2 className="text-xl sm:text-3xl font-bold text-blue-700 mb-1 sm:mb-2 leading-tight">
+// //             Welcome, {loggedStudent?.name}
+// //           </h2>
+  
+// //           <p className="text-xs sm:text-base text-gray-500 mb-4 sm:mb-6">
+// //             Roll: {loggedStudent?.roll} | Class {loggedStudent?.className} - Section {loggedStudent?.section}
+// //           </p>
+  
+// //           <div className="bg-blue-50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 mb-5 sm:mb-8">
+// //             <h3 className="text-lg sm:text-2xl font-bold text-blue-700 mb-3 sm:mb-5">
+// //               Student Details
+// //             </h3>
+  
+// //             <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+// //               <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl">
+// //                 <p className="text-[11px] sm:text-sm font-bold text-gray-500">Student Name</p>
+// //                 <p className="text-sm sm:text-lg font-bold break-words">{loggedStudent?.name || '-'}</p>
+// //               </div>
+  
+// //               <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl">
+// //                 <p className="text-[11px] sm:text-sm font-bold text-gray-500">Roll Number</p>
+// //                 <p className="text-sm sm:text-lg font-bold break-words">{loggedStudent?.roll || '-'}</p>
+// //               </div>
+  
+// //               <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl">
+// //                 <p className="text-[11px] sm:text-sm font-bold text-gray-500">Class</p>
+// //                 <p className="text-sm sm:text-lg font-bold break-words">{loggedStudent?.className || '-'}</p>
+// //               </div>
+  
+// //               <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl">
+// //                 <p className="text-[11px] sm:text-sm font-bold text-gray-500">Section</p>
+// //                 <p className="text-sm sm:text-lg font-bold break-words">{loggedStudent?.section || '-'}</p>
+// //               </div>
+  
+// //               <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl">
+// //                 <p className="text-[11px] sm:text-sm font-bold text-gray-500">Father Name</p>
+// //                 <p className="text-sm sm:text-lg font-bold break-words">{loggedStudent?.fatherName || '-'}</p>
+// //               </div>
+  
+// //               <div className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl">
+// //                 <p className="text-[11px] sm:text-sm font-bold text-gray-500">Phone Number</p>
+// //                 <p className="text-sm sm:text-lg font-bold break-words">{loggedStudent?.phone || '-'}</p>
+// //               </div>
+// //             </div>
+// //           </div>
+  
+// //           {r ? (
+// //             <>
+// //               <h3 className="text-lg sm:text-2xl font-bold mb-3 sm:mb-4">
+// //                 {r.exam} Result
+// //               </h3>
+  
+// //               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
+// //                 <div className="bg-blue-50 p-4 sm:p-5 rounded-xl sm:rounded-2xl">
+// //                   <p className="text-xs sm:text-base text-gray-600">Total Marks</p>
+// //                   <h3 className="text-xl sm:text-2xl font-bold text-blue-700">{st.total} / 400</h3>
+// //                 </div>
+  
+// //                 <div className="bg-green-50 p-4 sm:p-5 rounded-xl sm:rounded-2xl">
+// //                   <p className="text-xs sm:text-base text-gray-600">Percentage</p>
+// //                   <h3 className="text-xl sm:text-2xl font-bold text-green-700">{st.percent}%</h3>
+// //                 </div>
+  
+// //                 <div className={st.pass ? 'bg-green-100 p-4 sm:p-5 rounded-xl sm:rounded-2xl' : 'bg-red-100 p-4 sm:p-5 rounded-xl sm:rounded-2xl'}>
+// //                   <p className="text-xs sm:text-base text-gray-600">Status</p>
+// //                   <h3 className={st.pass ? 'text-xl sm:text-2xl font-bold text-green-700' : 'text-xl sm:text-2xl font-bold text-red-700'}>
+// //                     {st.pass ? 'PASS' : 'FAIL'}
+// //                   </h3>
+// //                 </div>
+// //               </div>
+  
+// //               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
+// //                 <div className="bg-purple-50 p-4 sm:p-5 rounded-xl sm:rounded-2xl">
+// //                   <p className="text-xs sm:text-base text-gray-600">School Rank</p>
+// //                   <h3 className="text-xl sm:text-2xl font-bold text-purple-700">#{rank.schoolRank}</h3>
+// //                 </div>
+  
+// //                 <div className="bg-orange-50 p-4 sm:p-5 rounded-xl sm:rounded-2xl">
+// //                   <p className="text-xs sm:text-base text-gray-600">Class Rank</p>
+// //                   <h3 className="text-xl sm:text-2xl font-bold text-orange-700">#{rank.classRank}</h3>
+// //                 </div>
+  
+// //                 <div className="bg-indigo-50 p-4 sm:p-5 rounded-xl sm:rounded-2xl">
+// //                   <p className="text-xs sm:text-base text-gray-600">Section Rank</p>
+// //                   <h3 className="text-xl sm:text-2xl font-bold text-indigo-700">#{rank.sectionRank}</h3>
+// //                 </div>
+// //               </div>
+  
+// //               <div className="mt-5 sm:mt-8">
+// //                 <h3 className="text-lg sm:text-2xl font-bold text-blue-700 mb-3 sm:mb-5">
+// //                   Subject Wise Marks
+// //                 </h3>
+  
+// //                 <div className="space-y-3 sm:space-y-4">
+// //                   {SUBJECTS.map((sub) => {
+// //                     const mark = Number(r[sub.toLowerCase()]);
+// //                     const isPass = mark >= PASS_MARK;
+  
+// //                     return (
+// //                       <div
+// //                         key={sub}
+// //                         className={
+// //                           isPass
+// //                             ? 'rounded-2xl sm:rounded-3xl p-4 sm:p-5 bg-gradient-to-r from-blue-50 to-green-50 border sm:border-2 border-blue-100 shadow-sm sm:shadow-lg'
+// //                             : 'rounded-2xl sm:rounded-3xl p-4 sm:p-5 bg-gradient-to-r from-red-50 to-orange-50 border sm:border-2 border-red-100 shadow-sm sm:shadow-lg'
+// //                         }
+// //                       >
+// //                         <div className="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 items-center">
+// //                           <div className="md:col-span-3">
+// //                             <p className="text-[11px] sm:text-sm font-bold text-gray-500">Subject</p>
+// //                             <h4 className="text-lg sm:text-2xl font-extrabold text-gray-800">{sub}</h4>
+// //                           </div>
+  
+// //                           <div className="md:col-span-2">
+// //                             <p className="text-[11px] sm:text-sm font-bold text-gray-500">Marks</p>
+// //                             <h4 className={isPass ? 'text-2xl sm:text-4xl font-extrabold text-blue-700' : 'text-2xl sm:text-4xl font-extrabold text-red-700'}>
+// //                               {mark}/100
+// //                             </h4>
+// //                           </div>
+  
+// //                           <div className="md:col-span-5">
+// //                             <p className="text-[11px] sm:text-sm font-bold text-gray-500 mb-2">Performance</p>
+// //                             <div className="w-full bg-white rounded-full h-3 sm:h-4 overflow-hidden">
+// //                               <div
+// //                                 className={isPass ? 'bg-blue-600 h-3 sm:h-4 rounded-full' : 'bg-red-600 h-3 sm:h-4 rounded-full'}
+// //                                 style={{ width: `${Math.min(mark, 100)}%` }}
+// //                               ></div>
+// //                             </div>
+// //                           </div>
+  
+// //                           <div className="md:col-span-2 md:text-right">
+// //                             <span className={isPass ? 'inline-block text-xs sm:text-sm font-bold bg-green-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full' : 'inline-block text-xs sm:text-sm font-bold bg-red-600 text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full'}>
+// //                               {isPass ? 'PASS' : 'FAIL'}
+// //                             </span>
+// //                           </div>
+// //                         </div>
+// //                       </div>
+// //                     );
+// //                   })}
+// //                 </div>
+// //               </div>
+// //             </>
+// //           ) : (
+// //             <div className="bg-yellow-50 p-4 sm:p-6 rounded-xl sm:rounded-2xl text-yellow-700 font-semibold text-sm sm:text-base">
+// //               Result not uploaded yet.
+// //             </div>
+// //           )}
+// //         </div>
+// //       </main>
+// //     );
+// //   };
+
+// //   const StudentForm = () => <div className="bg-blue-50 rounded-3xl p-5 mb-6"><h3 className="font-bold text-blue-700 mb-4">Add / Edit Student Details</h3><div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"><label><span className="text-sm font-bold text-gray-600 mb-2 block">Student Name</span><Input value={studentData.name} onChange={(e) => setStudentData({ ...studentData, name: e.target.value })} placeholder="Enter student name" /></label><label><span className="text-sm font-bold text-gray-600 mb-2 block">Roll Number</span><Input value={studentData.roll} onChange={(e) => setStudentData({ ...studentData, roll: cleanRoll(e.target.value) })} placeholder="Enter 5 digit roll number" /></label><label><span className="text-sm font-bold text-gray-600 mb-2 block">Class</span><Input value={studentData.className} onChange={(e) => setStudentData({ ...studentData, className: e.target.value })} placeholder="Enter class" /></label><label><span className="text-sm font-bold text-gray-600 mb-2 block">Section</span><Input value={studentData.section} onChange={(e) => setStudentData({ ...studentData, section: e.target.value })} placeholder="Enter section" /></label><label><span className="text-sm font-bold text-gray-600 mb-2 block">Father Name</span><Input value={studentData.fatherName} onChange={(e) => setStudentData({ ...studentData, fatherName: e.target.value })} placeholder="Enter father name" /></label><label><span className="text-sm font-bold text-gray-600 mb-2 block">Phone Number</span><Input value={studentData.phone} onChange={(e) => setStudentData({ ...studentData, phone: cleanPhone(e.target.value) })} placeholder="Enter phone number" /></label></div></div>;
+
+// //   const AdminDashboard = () => <main className="p-4 sm:p-6 max-w-7xl mx-auto"><div className="bg-white rounded-2xl sm:rounded-3xl shadow-xl p-4 sm:p-6"><div className="flex flex-wrap justify-between items-center gap-3 mb-6"><div className="flex flex-wrap gap-3">{['dashboard', 'students', 'results', 'notices'].map((tab) => <button key={tab} onClick={() => setAdminTab(tab)} className={adminTab === tab ? 'bg-blue-600 text-white px-4 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-bold capitalize text-sm sm:text-base' : 'bg-gray-100 px-4 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-bold capitalize text-sm sm:text-base'}>{tab}</button>)}</div><button onClick={logoutAdmin} className="bg-red-600 text-white px-4 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl font-bold text-sm sm:text-base">Logout</button></div>{message && <div className="bg-green-50 text-green-700 p-4 rounded-2xl mb-6 font-semibold">{message}</div>}
+// //     {adminTab === 'dashboard' && <div><h2 className="text-2xl font-bold mb-4">Welcome Admin 👋</h2><p className="text-gray-600 mb-8">Select an action above to manage the school portal.</p><div className="bg-blue-50 rounded-3xl p-6"><h3 className="text-2xl font-bold text-blue-700 mb-5">Class Performance Summary</h3>{classPerformanceSummary.length ? <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{classPerformanceSummary.map((item) => <div key={item.className} className="bg-white rounded-2xl p-5 shadow"><p className="text-gray-500 font-semibold">Class {item.className}</p><h4 className="text-3xl font-bold text-blue-700 mt-2">{item.average}%</h4><p className="text-sm text-gray-500 mt-2">Average from {item.students} result{item.students > 1 ? 's' : ''}</p></div>)}</div> : <div className="bg-white p-5 rounded-2xl text-gray-500">No class performance data yet. Upload results to see class averages.</div>}</div></div>}
+// //     {adminTab === 'students' && <div><h2 className="text-2xl font-bold mb-4">Manage Students</h2>{StudentForm()}<button onClick={addStudent} className="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold mb-8">{editingStudentRoll ? 'Update Student' : 'Add Student'}</button><div className="bg-gray-50 p-5 rounded-2xl mb-6"><h3 className="font-bold mb-3">Bulk Add Students</h3><p className="text-sm text-gray-500 mb-3">Format: roll,name,class,section,father,phone</p><textarea value={bulkStudents} onChange={(e) => setBulkStudents(e.target.value)} className="w-full border p-4 rounded-2xl h-28" placeholder="10001,Ali,10,A,Mr Khan,9876543210" /><div className="flex flex-wrap gap-3 mt-3"><button onClick={async () => { const report = await importStudents(bulkStudents); show(`${report.added} students added. ${report.skipped} skipped.`); setBulkStudents(''); }} className="bg-green-600 text-white px-5 py-3 rounded-2xl font-bold">Import Pasted Students</button><input type="file" accept=".csv,.txt" onChange={(e) => uploadFile(e, importStudents, 'students')} /></div></div><div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4"><Input value={studentSearch} onChange={(e) => setStudentSearch(e.target.value)} placeholder="Search students" /><Select value={studentClassFilter} onChange={(e) => setStudentClassFilter(e.target.value)} label="Classes" options={classOptions} /><Select value={studentSectionFilter} onChange={(e) => setStudentSectionFilter(e.target.value)} label="Sections" options={sectionOptions} /></div><button onClick={() => downloadCSV('students.csv', [['Roll','Name','Class','Section','Father','Phone'], ...students.map((s) => [s.roll, s.name, s.className, s.section, s.fatherName, s.phone])])} className="bg-gray-800 text-white px-5 py-3 rounded-2xl mb-4">Export Students CSV</button><div className="space-y-3"><div className="hidden lg:grid grid-cols-7 gap-3 bg-blue-600 text-white font-bold p-4 rounded-2xl"><p>Name</p><p>Roll</p><p>Class</p><p>Section</p><p>Father Name</p><p>Phone Number</p><p>Action</p></div>{filteredStudents.map((s) => <div key={s.roll} className="border p-5 rounded-2xl bg-white"><div className="grid grid-cols-1 lg:grid-cols-7 gap-3 items-center"><p><span className="lg:hidden font-bold text-gray-600">Name: </span>{s.name}</p><p><span className="lg:hidden font-bold text-gray-600">Roll: </span>{s.roll}</p><p><span className="lg:hidden font-bold text-gray-600">Class: </span>{s.className}</p><p><span className="lg:hidden font-bold text-gray-600">Section: </span>{s.section}</p><p><span className="lg:hidden font-bold text-gray-600">Father Name: </span>{s.fatherName || '-'}</p><p><span className="lg:hidden font-bold text-gray-600">Phone Number: </span>{s.phone || '-'}</p><div className="flex gap-2"><button onClick={() => { setStudentData(s); setEditingStudentRoll(s.roll); }} className="bg-yellow-500 text-white px-4 py-2 rounded-xl">Edit</button><button onClick={() => setStudents(students.filter((x) => x.roll !== s.roll))} className="bg-red-600 text-white px-4 py-2 rounded-xl">Delete</button></div></div></div>)}</div></div>}
+// //     {adminTab === 'results' && <div><h2 className="text-2xl font-bold mb-4">Manage Results</h2><div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"><Input value={resultData.roll} onChange={(e) => setResultData({ ...resultData, roll: cleanRoll(e.target.value) })} placeholder="Roll Number" /><Input value={resultData.exam} onChange={(e) => setResultData({ ...resultData, exam: e.target.value })} placeholder="Exam Name" /><Input value={resultData.maths} onChange={(e) => setResultData({ ...resultData, maths: e.target.value })} placeholder="Maths" /><Input value={resultData.science} onChange={(e) => setResultData({ ...resultData, science: e.target.value })} placeholder="Science" /><Input value={resultData.english} onChange={(e) => setResultData({ ...resultData, english: e.target.value })} placeholder="English" /><Input value={resultData.computer} onChange={(e) => setResultData({ ...resultData, computer: e.target.value })} placeholder="Computer" /></div><button onClick={addResult} className="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold mb-8">{editingResultRoll ? 'Update Result' : 'Upload Result'}</button><div className="bg-gray-50 p-5 rounded-2xl mb-6"><h3 className="font-bold mb-3">Bulk Add Results</h3><p className="text-sm text-gray-500 mb-3">Format: roll,exam,maths,science,english,computer</p><textarea value={bulkResults} onChange={(e) => setBulkResults(e.target.value)} className="w-full border p-4 rounded-2xl h-28" placeholder="10001,Mid Term,80,75,90,88" /><div className="flex flex-wrap gap-3 mt-3"><button onClick={() => { const report = importResults(bulkResults); show(`${report.added} results imported. ${report.skipped} skipped.`); setBulkResults(''); }} className="bg-green-600 text-white px-5 py-3 rounded-2xl font-bold">Import Pasted Results</button><input type="file" accept=".csv,.txt" onChange={(e) => uploadFile(e, importResults, 'results')} /></div></div><div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4"><Input value={resultSearch} onChange={(e) => setResultSearch(e.target.value)} placeholder="Search results" /><Select value={resultClassFilter} onChange={(e) => setResultClassFilter(e.target.value)} label="Classes" options={classOptions} /><Select value={resultSectionFilter} onChange={(e) => setResultSectionFilter(e.target.value)} label="Sections" options={sectionOptions} /></div><button onClick={() => downloadCSV('results.csv', [['Roll','Exam','Maths','Science','English','Computer','Percentage','Status'], ...results.map((r) => [r.roll, r.exam, r.maths, r.science, r.english, r.computer, stats(r).percent, stats(r).pass ? 'PASS' : 'FAIL'])])} className="bg-gray-800 text-white px-5 py-3 rounded-2xl mb-4">Export Results CSV</button><div className="space-y-3">{filteredResults.map((r) => { const s = students.find((x) => x.roll === r.roll); const st = stats(r); return <div key={r.roll} className="border p-4 rounded-2xl flex justify-between gap-4 flex-wrap"><div><b>{s?.name || 'Unknown Student'}</b><p className="text-gray-500">Roll {r.roll} | {r.exam} | {st.percent}% | {st.pass ? 'PASS' : 'FAIL'}</p></div><div className="flex gap-2"><button onClick={() => { setResultData(r); setEditingResultRoll(r.roll); }} className="bg-yellow-500 text-white px-4 py-2 rounded-xl">Edit</button><button onClick={() => setResults(results.filter((x) => x.roll !== r.roll))} className="bg-red-600 text-white px-4 py-2 rounded-xl">Delete</button></div></div>; })}</div></div>}
+// //     {adminTab === 'notices' && <div><h2 className="text-2xl font-bold mb-4">Manage Notices</h2><div className="flex gap-3 mb-6"><input value={noticeText} onChange={(e) => setNoticeText(e.target.value)} placeholder="Write notice" className="flex-1 border p-4 rounded-2xl" /><button onClick={async () => { if (noticeText.trim()) { const updatedNotices = [noticeText.trim(), ...notices]; setNotices(updatedNotices); await saveNoticesOnline(updatedNotices); setNoticeText(''); show('Notice added.'); } }} className="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold">Add</button></div><div className="space-y-3">{notices.map((n, i) => <div key={i} className="border p-4 rounded-2xl flex justify-between gap-4"><p>{n}</p><button onClick={async () => { const updatedNotices = notices.filter((_, index) => index !== i); setNotices(updatedNotices); await saveNoticesOnline(updatedNotices); }} className="bg-red-600 text-white px-4 py-2 rounded-xl">Delete</button></div>)}</div></div>}
+// //   </div></main>;
+
+// //   return (
+// //     <div className="min-h-screen bg-gray-100 text-gray-900 overflow-x-hidden">
+// //       <header className="bg-white shadow sticky top-0 z-50">
+// //         <div className="max-w-7xl mx-auto px-3 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+// //           <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-start">
+// //             <img src={SCHOOL_LOGO} alt="School Logo" className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover" />
+// //             <div className="text-center sm:text-left">
+// //               <h1 className="text-base sm:text-xl font-bold text-blue-700 leading-tight">{SCHOOL_NAME}</h1>
+// //               <p className="text-[10px] sm:text-xs text-gray-500">{SCHOOL_TAGLINE}</p>
+// //             </div>
+// //           </div>
+
+// //           <nav className="w-full sm:w-auto grid grid-cols-3 sm:flex gap-2 bg-blue-50/70 p-2 rounded-2xl border border-blue-100 shadow-inner">
+// //             <button
+// //               type="button"
+// //               onClick={() => setPage('home')}
+// //               className={page === 'home' ? 'px-3 sm:px-5 py-2 rounded-xl bg-blue-600 text-white font-bold shadow-lg transition-all duration-300 text-sm sm:text-base' : 'px-3 sm:px-5 py-2 rounded-xl font-bold text-gray-700 hover:text-blue-700 hover:bg-white hover:shadow-md transition-all duration-300 text-sm sm:text-base'}
+// //             >
+// //               Home
+// //             </button>
+
+// //             <button
+// //               type="button"
+// //               onClick={() => setPage('student')}
+// //               className={page === 'student' || page === 'studentDashboard' ? 'px-3 sm:px-5 py-2 rounded-xl bg-blue-600 text-white font-bold shadow-lg transition-all duration-300 text-sm sm:text-base' : 'px-3 sm:px-5 py-2 rounded-xl font-bold text-gray-700 hover:text-blue-700 hover:bg-white hover:shadow-md transition-all duration-300 text-sm sm:text-base'}
+// //             >
+// //               Student
+// //             </button>
+
+// //             <button
+// //               type="button"
+// //               onClick={() => setPage(adminLoggedIn ? 'adminDashboard' : 'admin')}
+// //               className={page === 'admin' || page === 'adminDashboard' ? 'px-3 sm:px-5 py-2 rounded-xl bg-blue-600 text-white font-bold shadow-lg transition-all duration-300 text-sm sm:text-base' : 'px-3 sm:px-5 py-2 rounded-xl font-bold text-gray-700 hover:text-blue-700 hover:bg-white hover:shadow-md transition-all duration-300 text-sm sm:text-base'}
+// //             >
+// //               Admin
+// //             </button>
+// //           </nav>
+// //         </div>
+// //       </header>
+
+// //       {page === 'home' && Home()}
+// //       {page === 'student' && StudentLogin()}
+// //       {page === 'admin' && (adminLoggedIn ? AdminDashboard() : AdminLogin())}
+// //       {page === 'studentDashboard' && StudentDashboard()}
+// //       {page === 'adminDashboard' && (adminLoggedIn ? AdminDashboard() : AdminLogin())}
+// //     </div>
+// //   );
+// // }
