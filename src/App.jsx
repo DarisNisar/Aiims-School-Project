@@ -1036,7 +1036,7 @@ import { createClient } from '@supabase/supabase-js';
 export default function AIIMSSchoolPortalPreview() {
   const SCHOOL_NAME = 'AIIMS School Portal';
   const SCHOOL_TAGLINE = 'Smart Student Management System';
-  const SCHOOL_LOGO = 'https://scontent.fblr21-2.fna.fbcdn.net/v/t39.30808-6/481794218_1170107788457435_8543515203972674516_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=jBZWdszteWEQ7kNvwFcGSMI&_nc_oc=AdrmLTYyk1XS-tVGXWWqLxlDAQpmHTFtIWXzLiioeNaU-JmNJADCQ7TqeFbsCyxsLBo&_nc_zt=23&_nc_ht=scontent.fblr21-2.fna&_nc_gid=zxsPltKDiwMUtS1OZQD0BQ&_nc_ss=7b289&oh=00_Af4dzYoey9iNJQ_1gD0BKkrBRcQVwA9guqhF8A5fwvdx4Q&oe=6A12B2C5';
+  const SCHOOL_LOGO = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrX6BasiENW8NeMf5ayN-vsrhVHizKMucE7CiAZBc639rx9sm_S6zVzOYW&s=10';
   const ADMIN_EMAIL = 'admin@aiims.edu';
   const ADMIN_PASSWORD = 'admin@123';
   const PASS_MARK = 35;
